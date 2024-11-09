@@ -1,0 +1,1146 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Admin Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" id="theme-style" href="css/app-green.css">
+    <link rel="stylesheet" href="css/list-custom.css">
+    <script src="js/Chart.min.js"></script>
+
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="app" id="app">
+            <header class="header">
+                <div class="header-block header-block-collapse d-lg-none d-xl-none">
+                    <button class="collapse-btn" id="sidebar-collapse-btn">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="header-block header-block-Title">
+                    <h2>Company Name </h2>
+                </div>
+                <div class="header-block header-block-nav">
+                    <ul class="nav-profile">
+                        <li class="notifications new">
+                            <a href="" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <sup>
+                                    <span class="counter">3</span>
+                                </sup>
+                            </a>
+                            <div class="dropdown-menu notifications-dropdown-menu">
+                                <ul class="notifications-container">
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/3.jpg')">
+                                                </div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p>
+                                                    <span class="accent">Testiing</span> Sample Notification: <span
+                                                        class="accent">this is a sample text for notification</span>.
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/5.jpg')">
+                                                </div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p>
+                                                    <span class="accent">Testiing</span> Sample Notification: <span
+                                                        class="accent">this is a sample text for notification</span>.
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" class="notification-item">
+                                            <div class="img-col">
+                                                <div class="img" style="background-image: url('assets/faces/8.jpg')">
+                                                </div>
+                                            </div>
+                                            <div class="body-col">
+                                                <p>
+                                                    <span class="accent">Testiing</span> Sample Notification: <span
+                                                        class="accent">this is a sample text for notification</span>.
+                                                </p>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <footer>
+                                    <ul>
+                                        <li>
+                                            <a href=""> View All </a>
+                                        </li>
+                                    </ul>
+                                </footer>
+                            </div>
+                        </li>
+                        <li class="profile dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <div class="img" style="background-image: url('images/user.png')">
+                                </div>
+                                <span class="name"> Sarathraj </span>
+                            </a>
+                            <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa fa-user icon"></i> Profile </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa fa-bell icon"></i> Notifications </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa fa-gear icon"></i> Settings </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="login.html">
+                                    <i class="fa fa-power-off icon"></i> Logout </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <aside class="sidebar">
+                <div class="sidebar-container">
+                    <div class="sidebar-header">
+                        <div class="brand">
+                            <div class="logo">
+                                <img src="images/logo.png" style="width: 50%; float: right;">
+                            </div> Admin
+                        </div>
+                    </div>
+                    <nav class="menu">
+                        <ul class="sidebar-menu metismenu" id="sidebar-menu">
+                            <li>
+                                <a href="index.html">
+                                    <i class="fa fa-home"></i> Dashboard </a>
+                            </li>
+                            <li class="active open">
+                                <a href="">
+                                    <i class="fa fa-th-large"></i> Menu Link 1 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li class="active">
+                                        <a href="items-list.html"> Submenu Link 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="items-edit.html"> Submenu Link 2 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-area-chart"></i> Main Link 2 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="#"> Submenu Link 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 2 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-table"></i> Main Link 3 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="#"> Submenu Link 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 2 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-pencil-square-o"></i> Main Link 4
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-desktop"></i> Main Link 5 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="#"> Submenu Link 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 2 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 3 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 4 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-file-text-o"></i> Main Link 6 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="#"> Submenu Link 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 2 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 3 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 4 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 6 </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Submenu Link 7 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-sitemap"></i> Menu Link 7 <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav">
+                                    <li>
+                                        <a href="#"> Second Level Menu <i class="fa arrow"></i>
+                                        </a>
+                                        <ul class="sidebar-nav">
+                                            <li>
+                                                <a href="#"> Third Level Menu </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> Third Level Menu </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Second Level Menu </a>
+                                    </li>
+                                    <li>
+                                        <a href="#"> Second Level Menu <i class="fa arrow"></i>
+                                        </a>
+                                        <ul class="sidebar-nav">
+                                            <li>
+                                                <a href="#"> Third Level Menu </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> Third Level Menu </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"> Third Level Item <i class="fa arrow"></i>
+                                                </a>
+                                                <ul class="sidebar-nav">
+                                                    <li>
+                                                        <a href="#"> Fourth Level Menu </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"> Fourth Level Menu </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <footer class="sidebar-footer">
+                    <ul class="sidebar-menu metismenu" id="customize-menu">
+                        <li>
+                            <ul>
+                                <li class="customize">
+                                    <div class="customize-item">
+
+                                        <div class="row">
+                                            <div class="col-12">
+
+                                                <a href="">
+                                                    <i class="fa fa-pencil-square-o"></i> Settings Link 1
+                                                </a>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+
+                                                <a href="">
+                                                    <i class="fa fa-pencil-square-o"></i> Settings Link 2
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+
+                                                <a href="">
+                                                    <i class="fa fa-pencil-square-o"></i> Settings Link 3
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <a href="">
+                                <i class="fa fa-cog"></i> Settings </a>
+                        </li>
+                    </ul>
+                </footer>
+            </aside>
+            <div class="sidebar-overlay" id="sidebar-overlay"></div>
+            <div class="sidebar-mobile-menu-handle" id="sidebar-mobile-menu-handle"></div>
+            <div class="mobile-menu-handle"></div>
+
+            <!-- Body Section : Start -->
+            <article class="content items-list-page">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="box-content">
+                                <p class="center">
+                                    <button onclick="javascript:addfunction()" id="AddItems"
+                                        class="btn btn-primary"><i class="halflings-icon white bell"></i>Add New</button>
+
+                                        <button onclick="javascript: ExportItems(this);" data-toggle='modal' id="ExportItems"
+                                        class="btn btn-primary"><i class="fa fa-download"> &nbsp;</i>Export</button>
+
+                                        <button data-toggle="modal" data-target='#attachment-modal' onclick="javascript: ImportPopup(this);" id="ImportItems"
+                                        class="btn btn-primary"><i class="fa fa-upload"> &nbsp;</i>Import</button>
+
+                                    <span style="float: right; display: inline-flex; width: 40%;">
+                                        <span style="min-width: 60px;">Filter : </span>
+                                        <select name="dd_filter"
+                                            onchange="javascript:testfunction()"
+                                            id="dd_filter" class="dynamicdropdownposition form-control margin-right-10">
+                                            <option selected="selected" value="Active">Active</option>
+                                            <option value="Expired">Expired</option>
+                                            <option value="Deleted">Deleted</option>
+
+                                        </select>
+                                        
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="card-title-block">
+                                    <section class="example">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table table-striped table-bordered table-hover dataTable no-footer"
+                                                cellspacing="0" rules="all" border="1" id="GV_ManageList"
+                                                style="border-collapse: collapse;" role="grid"
+                                                aria-describedby="GV_ManageList_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th scope="col" class="sorting_asc" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Attachment: activate to sort column descending"
+                                                            style="width: 96px;">Attachment</th>
+                                                        <th class="hiddencol sorting" scope="col" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Id: activate to sort column ascending"
+                                                            style="width: 0px;">Id</th>
+                                                        <th class="hiddencol sorting" scope="col" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="GID: activate to sort column ascending"
+                                                            style="width: 0px;">Reference Id</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Title: activate to sort column ascending"
+                                                            style="width: 327px;">Title</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Vendor Name: activate to sort column ascending"
+                                                            style="width: 164px;">Vendor Name</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Expiry Date: activate to sort column ascending"
+                                                            style="width: 139px;">Expiry Date</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Request Status: activate to sort column ascending"
+                                                            style="width: 178px;">Request Status</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Status: activate to sort column ascending"
+                                                            style="width: 203px;">Status</th>
+                                                        <th scope="col" class="sorting" tabindex="0"
+                                                            aria-controls="GV_ManageList" rowspan="1" colspan="1"
+                                                            aria-label="Action: activate to sort column ascending"
+                                                            style="width: 87px;">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">39</td>
+                                                        <td class="hiddencol">75BD2A35-775E-4C78-8B1D-FBEB49469CCB</td>
+                                                        <td>Test Title 1</td>
+                                                        <td>A Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate"></span>
+                                                        </td>
+                                                        <td>Requested</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">40</td>
+                                                        <td class="hiddencol">5310BDB0-892E-4AEC-9C8B-98242EDD25D5</td>
+                                                        <td>Test Title 2</td>
+                                                        <td>A Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate"></span>
+                                                        </td>
+                                                        <td>Requested</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">41</td>
+                                                        <td class="hiddencol">F5FA0C8E-DD80-4306-8349-CB2D70E5BC6B</td>
+                                                        <td>Test Title 12</td>
+                                                        <td>A Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate"></span>
+                                                        </td>
+                                                        <td>Requested</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">43</td>
+                                                        <td class="hiddencol">2CB1A050-4685-490A-BE9A-7748D30181B5</td>
+                                                        <td>Test Title 13</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate"></span>
+                                                        </td>
+                                                        <td>Requested</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">44</td>
+                                                        <td class="hiddencol">5740E5FE-18BD-41D7-87E8-C58EC49C73C5</td>
+                                                        <td>ITest Title 14</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate"></span>
+                                                        </td>
+                                                        <td>Requested</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">36</td>
+                                                        <td class="hiddencol">9CF57DDD-8990-4865-882C-BE4C53D478C6</td>
+                                                        <td>Test Title 15</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">16-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">37</td>
+                                                        <td class="hiddencol">BEA6237B-03D5-40E7-8EEB-F27006E413F5</td>
+                                                        <td>Test Title 16</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Approved</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="even">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">38</td>
+                                                        <td class="hiddencol">F4F6D1EA-A317-40A4-988F-8A4695D816D8</td>
+                                                        <td>Test01</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Dec-2023</span>
+                                                        </td>
+                                                        <td>Approved</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">42</td>
+                                                        <td class="hiddencol">C1ECBD94-7AA1-40E9-9BAB-E76FCB60B1F3</td>
+                                                        <td>Tesing001</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">42</td>
+                                                        <td class="hiddencol">C1ECBD94-7AA1-40E9-9BAB-E76FCB60B1F3</td>
+                                                        <td>Tesing001</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">42</td>
+                                                        <td class="hiddencol">C1ECBD94-7AA1-40E9-9BAB-E76FCB60B1F3</td>
+                                                        <td>Tesing001</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">42</td>
+                                                        <td class="hiddencol">C1ECBD94-7AA1-40E9-9BAB-E76FCB60B1F3</td>
+                                                        <td>Tesing00s1</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr role="row" class="odd">
+                                                        <td style="width:20px;" class="sorting_1">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload" class="btn white-color"
+                                                                            data-toggle="modal"
+                                                                            data-target="#attachment-modal"
+                                                                            onclick="javascript: GridAttachmentsPopup(this);">
+                                                                            <i class="fa fa-paperclip"></i> </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                        <td class="hiddencol">42</td>
+                                                        <td class="hiddencol">C1ECBD94-7AA1-40E9-9BAB-E76FCB60B1F3</td>
+                                                        <td>Tesing001</td>
+                                                        <td>S Grid</td>
+                                                        <td>
+                                                            <span id="lblExpiryDate">31-Oct-2023</span>
+                                                        </td>
+                                                        <td>Submitted</td>
+                                                        <td>Active</td>
+                                                        <td style="width:20px;">
+                                                            <div class="item-actions-block">
+                                                                <ul class="item-actions-list">
+                                                                    <li>
+                                                                        <a id="FileDownload"
+                                                                            class="btn btn-info white-color"
+                                                                            onclick="javascript: GridItemEdit(this);">
+                                                                            <i class="fa fa-pencil"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a id="FileDelete"
+                                                                            class="btn btn-info white-color remove"
+                                                                            href="#" data-toggle="modal"
+                                                                            data-target="#confirm-modal"
+                                                                            onclick="javascript: GridDeleteItemSelect(this);"
+                                                                            style="">
+                                                                            <i class="fa fa-trash-o "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </article>
+
+            <!-- Body Section : End -->
+
+            <footer class="footer">
+                <div class="footer-block buttons">
+
+                </div>
+                <div class="footer-block author">
+                    <ul>
+                        <li> Developed by <a href="#"> ##### </a>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+ <!-- /Delete .modal -->
+ <div class="modal fade" id="confirm-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="fa fa-warning"></i>Alert</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to do this?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_DeleteConfirm" onclick="btn_DeleteConfirm_Click()" runat="server">Yes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn_DeleteCancel" runat="server">No</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+ <!-- /Attachment .modal -->
+ <div class="modal fade" id="attachment-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Excel</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <section class="section">
+                        <div class="row-fluid">
+                            <div class="box span12" style="width: 100%; overflow-x: auto;">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-block">
+                                            <div class="form-group row" id="ctrl_Attachment_unit">
+                                                <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+                                                <form class="form-container" enctype='multipart/form-data'>
+                                                    <div class="upload-files-container">
+                                                        <div class="drag-file-area">
+                                                            <span class="material-icons-outlined upload-icon"> file_upload </span>
+                                                            <h3 class="dynamic-message"> Drag & drop any file here </h3>
+                                                            <label class="label browse-file"> or <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">browse file</span> <span>from device</span> </span> </label>
+                                                        </div>
+                                                        <span class="cannot-upload-message"> <span class="material-icons-outlined">error</span> Please select a file first <span class="material-icons-outlined cancel-alert-button">cancel</span> </span>
+                                                        <div class="file-block">
+                                                            <div class="file-info"> <span class="material-icons-outlined file-icon">description</span> <span class="file-name"> </span> | <span class="file-size">  </span> </div>
+                                                            <span class="material-icons remove-file-icon">delete</span>
+                                                            <div class="progress-bar"> </div>
+                                                        </div>
+                                                        <button type="button" class="upload-button margin-top-10"> Upload </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </p>
+                <asp:HiddenField ID="lbl_SelectedItem" runat="server" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="Button2" runat="server">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div id="loading">
+    <img id="loading-image" src="images/loading.gif" alt="Loading..." />
+</div>
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/modern-upload.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#GV_ManageList').DataTable({
+                "bProcessing": true,
+                "sAutoWidth": false,
+                "bDestroy":true,
+                "sPaginationType": "bootstrap", // full_numbers
+                "iDisplayStart ": 10,
+                "iDisplayLength": 10,
+                "bPaginate": true, //hide pagination
+                "bFilter": true, //hide Search bar
+                "bInfo": true, // hide showing entries
+                "sPaginationType":"full_numbers",
+                "lengthChange": false
+            })
+        });
+
+        function addfunction()
+        {
+            window.location.href = 'items-edit.html';
+        }
+
+        function ImportPopup(elem) {
+            //code for import
+        }
+
+
+    </Script>
+</body>
+
+</html>
