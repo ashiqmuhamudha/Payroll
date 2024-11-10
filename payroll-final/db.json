@@ -1,303 +1,136 @@
 {
   "orgHeader": [
-    { "id": 7, "at": "COLUMN1", "cd": "DEPT1", "ds": "Department", "st": "A" },
-    { "id": 8, "at": "COLUMN2", "cd": "DESIG", "ds": "Designation", "st": "A" },
-    { "id": 9, "at": "COLUMN3", "cd": "CC", "ds": "Cost Center", "st": "A" },
-    { "id": 10, "at": "COLUMN4", "cd": "PC", "ds": "Profit Center", "st": "A" },
-    { "id": 11, "at": "COLUMN5", "cd": "CTY", "ds": "Country", "st": "A" }
+    {
+      "id": "7",
+      "at": "COLUMN1",
+      "cd": "DEPT1",
+      "ds": "Department",
+      "st": "A"
+    },
+    {
+      "id": "8",
+      "at": "COLUMN2",
+      "cd": "DESIG",
+      "ds": "Designation",
+      "st": "A"
+    },
+    {
+      "id": "9",
+      "at": "COLUMN3",
+      "cd": "CC",
+      "ds": "Cost Center",
+      "st": "A"
+    },
+    {
+      "id": "10",
+      "at": "COLUMN4",
+      "cd": "PC",
+      "ds": "Profit Center",
+      "st": "A"
+    },
+    {
+      "id": "11",
+      "at": "COLUMN5",
+      "cd": "CTY",
+      "ds": "Country",
+      "st": "A"
+    }
   ],
   "orgValue": [
-    { "id": 29, "oId": 7, "cd": "BI", "ds": "Business Intelligence", "st": "A" },
-    { "id": 50, "oId": 7, "cd": "HR", "ds": "Human Resources", "st": "A" },
-    { "id": 53, "oId": 7, "cd": "FIN", "ds": "Finance", "st": "A" }
+    {
+      "id": "29",
+      "oId": 7,
+      "cd": "BI",
+      "ds": "Business Intelligence",
+      "st": "A"
+    },
+    {
+      "id": "50",
+      "oId": 7,
+      "cd": "HR",
+      "ds": "Human Resources",
+      "st": "A"
+    },
+    {
+      "id": "53",
+      "oId": 7,
+      "cd": "FIN",
+      "ds": "Finance",
+      "st": "A"
+    }
   ],
   "orgdatas": [
     {
-      "id": 1,
-      "cd": "PG1",
-      "ds": "PG1",
+      "id": "12",
+      "cd": "T12",
+      "ds": "Test 1",
       "st": "A",
       "salaryGroupConditionListDto": [
         {
-          "id": 1,
-          "sId": 1,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
+          "id": 0,
+          "sId": 0,
+          "oAHId": 7,
+          "oP": "OR",
+          "oADId": "29, 50",
+          "oADCode": "BI, HR"
         },
         {
-          "id": 2,
-          "sId": 1,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
+          "id": 0,
+          "sId": 0,
+          "oAHId": "9",
           "oP": "AND",
-          "cO": "!="
+          "oADId": 0,
+          "oADCode": ""
+        },
+        {
+          "id": 0,
+          "sId": 0,
+          "oAHId": "10",
+          "oP": "OR",
+          "oADId": 0,
+          "oADCode": ""
         }
       ]
     },
     {
-      "id": 2,
-      "cd": "PG2",
-      "ds": "PG2",
-      "st": "A",
+      "id": "13",
+      "cd": "T2",
+      "ds": "Test 2 Desc",
+      "st": "I",
       "salaryGroupConditionListDto": [
         {
-          "id": 3,
-          "sId": 2,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
+          "id": 0,
+          "sId": 0,
+          "oAHId": 7,
           "oP": "AND",
-          "cO": "=="
+          "oADId": "53",
+          "oADCode": "FIN"
         },
         {
-          "id": 4,
-          "sId": 2,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
+          "id": 0,
+          "sId": 0,
+          "oAHId": "11",
           "oP": "AND",
-          "cO": "!="
+          "oADId": 0,
+          "oADCode": ""
         }
       ]
     },
     {
-      "id": 3,
-      "cd": "PG3",
-      "ds": "PG3",
+      "id": "14",
+      "cd": "T3",
+      "ds": "Test 3 description",
       "st": "A",
       "salaryGroupConditionListDto": [
         {
-          "id": 5,
-          "sId": 3,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
+          "id": 0,
+          "sId": 0,
+          "oAHId": 7,
           "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 6,
-          "sId": 3,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "cd": "PG4",
-      "ds": "PG4",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 7,
-          "sId": 4,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 8,
-          "sId": 4,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "cd": "PG5",
-      "ds": "PG5",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 9,
-          "sId": 5,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 10,
-          "sId": 5,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "cd": "PG6",
-      "ds": "PG6",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 11,
-          "sId": 6,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 12,
-          "sId": 6,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "cd": "PG7",
-      "ds": "PG7",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 13,
-          "sId": 7,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 14,
-          "sId": 7,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "cd": "PG8",
-      "ds": "PG8",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 15,
-          "sId": 8,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 16,
-          "sId": 8,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "cd": "PG9",
-      "ds": "PG9",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 17,
-          "sId": 9,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 18,
-          "sId": 9,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "cd": "PG10",
-      "ds": "PG10",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 19,
-          "sId": 10,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 20,
-          "sId": 10,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "cd": "PG11",
-      "ds": "PG11",
-      "st": "A",
-      "salaryGroupConditionListDto": [
-        {
-          "id": 21,
-          "sId": 11,
-          "oAHId": 1,
-          "oADId": 1,
-          "oADCode": "DEPT1",
-          "oP": "AND",
-          "cO": "=="
-        },
-        {
-          "id": 22,
-          "sId": 11,
-          "oAHId": 2,
-          "oADId": 2,
-          "oADCode": "DEPT2",
-          "oP": "AND",
-          "cO": "!="
+          "oADId": "29, 50",
+          "oADCode": "BI, HR"
         }
       ]
     }
-    
-  ]  
+  ]
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { OrgserviceService } from '../orgservice.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IOrgData, ISalaryGroupCondition, OrgHeader, OrgValue } from '../orgmodel';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal.component';
 
 @Component({
   selector: 'app-orgform',
@@ -9,14 +12,23 @@ import { IOrgData, ISalaryGroupCondition, OrgHeader, OrgValue } from '../orgmode
   styleUrls: ['./orgform.component.scss']
 })
 export class OrgformComponent implements OnInit {
-  orgForm: FormGroup;
+  salaryForm!: FormGroup;
   orgHeaderOptions: OrgHeader[] = [];
   orgValueOptions: OrgValue[] = [];
-  filteredOrgValueOptions: OrgValue[] = [];
+  selectedOrgHeaderId: number | null = null;
+  filteredOrgValues: OrgValue[] = [];
+  payrollId: number | null = null;
+  isAdd: boolean = true;
 
-  constructor(private fb: FormBuilder, private orgService: OrgserviceService) {
-    this.orgForm = this.fb.group({
-      id: [null, Validators.required],
+  constructor(
+    private fb: FormBuilder,
+    private orgService: OrgserviceService,
+    private modalService: NgbModal,
+    public router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.salaryForm = this.fb.group({
+      id: [null],
       cd: ['', Validators.required],
       ds: ['', Validators.required],
       st: ['A', Validators.required],
@@ -27,30 +39,39 @@ export class OrgformComponent implements OnInit {
   ngOnInit(): void {
     this.loadOrgHeaders();
     this.loadOrgValues();
-    this.addSalaryGroupCondition();
+
+    // Check if the route contains an 'id' parameter for edit
+    this.route.paramMap.subscribe(params => {
+      const id = +params.get('id')!;  // Use the ID from the route (e.g., 2)
+      this.payrollId = id;
+
+      // If an ID exists, fetch the existing payroll data
+      if (this.payrollId) {
+        this.isAdd=false;
+        this.editSalaryGroup(this.payrollId);
+      }
+      else {
+        this.isAdd=true;
+        this.salaryForm.patchValue({
+          salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
+        })
+      }
+    });
   }
 
   get salaryGroupConditionListDto(): FormArray {
-    return this.orgForm.get('salaryGroupConditionListDto') as FormArray;
+    return this.salaryForm.get('salaryGroupConditionListDto') as FormArray;
   }
 
-  createSalaryGroupCondition(condition: ISalaryGroupCondition = { id: 0, sId: 0, oAHId: 0, oADId: 0, oADCode: '', oP: '', cO: '' }): FormGroup {
-    const group = this.fb.group({
+  createSalaryGroupCondition(condition: ISalaryGroupCondition = { id: 0, sId: 0, oAHId: 0, oADId: 0, oADCode: '', oP: '' }): FormGroup {
+    return this.fb.group({
       id: [condition.id],
       sId: [condition.sId],
       oAHId: [condition.oAHId, Validators.required],
       oP: [condition.oP, Validators.required],
       oADId: [condition.oADId],
-      oADCode: [condition.oADCode],
-      cO: [condition.cO, Validators.required]
+      oADCode: [condition.oADCode]
     });
-
-    group.get('oAHId')!.valueChanges.subscribe(value => {
-      if (value != null) {
-        this.updateOrgValueOptions(value, group);
-      }
-    });
-    return group;
   }
 
   addSalaryGroupCondition() {
@@ -61,71 +82,120 @@ export class OrgformComponent implements OnInit {
     this.salaryGroupConditionListDto.removeAt(index);
   }
 
-  updateOrgValueOptions(orgHeaderId: number, conditionGroup: FormGroup) {
-    this.filteredOrgValueOptions = this.orgValueOptions.filter(option => option.oId === orgHeaderId);
-    conditionGroup.get('oADId')!.setValue(null);
+  // Populate form fields when editing an existing payroll
+  editSalaryGroup(id: number) {
+    this.orgService.getOrgDataByCode(id).subscribe((data: IOrgData[]) => {
+      if (data && data.length > 0) {
+        this.salaryForm.patchValue({
+          id: data[0].id,
+          cd: data[0].cd,
+          ds: data[0].ds,
+          st: data[0].st
+        });
+
+        // Populate salary group conditions if available
+        this.salaryGroupConditionListDto.clear(); // Clear any existing conditions
+        data[0].salaryGroupConditionListDto.forEach((condition: ISalaryGroupCondition) => {
+          this.salaryGroupConditionListDto.push(this.createSalaryGroupCondition(condition));
+        });
+      }
+    });
   }
 
   onSubmit() {
-    if (this.orgForm.valid) {
-      const formValue: IOrgData = this.orgForm.value;
+    if (this.salaryForm.valid) {
+      const formValue: IOrgData = this.salaryForm.value;
 
       // Check if this is a new entry or an update
       if (formValue.id) {
         this.orgService.updateOrgData(formValue).subscribe(response => {
           console.log('Updated:', response);
+          this.router.navigate(['/payroll-list']);
         });
       } else {
         this.orgService.addOrgData(formValue).subscribe(response => {
           console.log('Added:', response);
+          this.router.navigate(['/payroll-list']);
         });
-      }
-    }
+      }      
+    }    
   }
 
-  // Load OrgHeader data from the JSON server
+  // Load OrgHeader data
   loadOrgHeaders() {
     this.orgService.getOrgHeaders().subscribe(data => {
       this.orgHeaderOptions = data;
     });
   }
 
-  // Load OrgValue data from the JSON server
+  // Load OrgValue data
   loadOrgValues() {
     this.orgService.getOrgValues().subscribe(data => {
       this.orgValueOptions = data;
     });
   }
 
-  deleteSalaryGroup(id: number) {
-    this.orgService.deleteOrgData(id).subscribe(() => {
-      console.log(`Deleted group with ID: ${id}`);
+  // Fetch the description based on oAHId
+  getOrgHeaderDs(oAHId: number): string {
+    const orgHeader = this.orgHeaderOptions.find(header => header.id == oAHId);
+    return orgHeader ? orgHeader.ds : '';
+  }
+
+  getOrgValueDs(oADIds: number | number[]): string {
+    let ids: string[];
+
+    if (typeof oADIds === 'string') {
+      // Convert a comma-separated string of IDs into an array of numbers
+      ids = (oADIds as unknown as string).split(',').map(id => id.trim());
+    } else if (Array.isArray(oADIds)) {
+      // If it's already an array of numbers, use it directly
+      ids = oADIds.map(id => id.toString());
+    } else {
+      // If it's a single number, wrap it in an array
+      ids = [oADIds.toString()];
+    }
+
+    const selectedOrgValues = this.orgValueOptions.filter(value => ids.includes(value.id.toString()));
+    return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
+  }
+
+  openOrgHeaderModal(conditionIndex: number) {
+    const modalRef = this.modalService.open(SelectionModalComponent, { size: 'lg' });
+    modalRef.componentInstance.data = this.orgHeaderOptions;
+    modalRef.componentInstance.isMultiSelect = false;
+    modalRef.componentInstance.title = 'Select Org Header';
+    modalRef.componentInstance.paginatedData = this.orgHeaderOptions;
+
+    modalRef.componentInstance.selectionConfirmed.subscribe((selectedHeader: any) => {
+      if (selectedHeader) {
+        const condition = this.salaryGroupConditionListDto.at(conditionIndex);
+        condition.patchValue({ oAHId: selectedHeader.id });
+      }
     });
   }
 
-  editSalaryGroup(id: number) {
-    this.orgService.getOrgDataByCode(id).subscribe((data: IOrgData) => {
-      // Populate the form with retrieved data
-      this.orgForm.patchValue({
-        id: data.id,
-        cd: data.cd,
-        ds: data.ds,
-        st: data.st,
-      });
+  openOrgValueModal(conditionIndex: number) {
+    const oAHId = this.salaryGroupConditionListDto.at(conditionIndex).get('oAHId')?.value;
+    const filteredOrgValues = this.orgValueOptions.filter(value => value.oId == oAHId);
 
-      // Clear existing conditions and add the retrieved ones
-      this.salaryGroupConditionListDto.clear();
-      data.salaryGroupConditionListDto.forEach(condition => {
-        this.salaryGroupConditionListDto.push(this.createSalaryGroupCondition(condition));
-      });
+    const modalRef = this.modalService.open(SelectionModalComponent, { size: 'lg' });
+    modalRef.componentInstance.data = filteredOrgValues;
+    modalRef.componentInstance.isMultiSelect = true;
+    modalRef.componentInstance.title = 'Select Org Value';
+    modalRef.componentInstance.paginatedData = this.orgValueOptions;
+
+    modalRef.componentInstance.selectionConfirmed.subscribe((selectedValues: any[]) => {
+      if (selectedValues.length > 0) {
+        const condition = this.salaryGroupConditionListDto.at(conditionIndex);
+        const selectedCodes = selectedValues.map(value => value.cd).join(', ');
+        const selectedIds = selectedValues.map(value => value.id).join(', ');
+
+        // Patch the values into the form
+        condition.patchValue({
+          oADCode: selectedCodes,
+          oADId: selectedIds
+        });
+      }
     });
-  }
-
-  // Optional: Reset the form for a new entry
-  resetForm() {
-    this.orgForm.reset();
-    this.salaryGroupConditionListDto.clear();
-    this.addSalaryGroupCondition(); // Optionally add an empty condition row
   }
 }
-

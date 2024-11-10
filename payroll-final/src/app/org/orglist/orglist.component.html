@@ -16,10 +16,8 @@
                                 <span style="min-width: 60px;">Filter : </span>
                                 <select name="dd_filter" onchange="javascript:testfunction()" id="dd_filter"
                                     class="dynamicdropdownposition form-control margin-right-10">
-                                    <option selected="selected" value="Active">Active</option>
-                                    <option value="Expired">Expired</option>
-                                    <option value="Deleted">Deleted</option>
-
+                                    <option selected="selected" value="A">Active</option>
+                                    <option value="I">Inactive</option>
                                 </select>
                             </span>
                     </div>
@@ -30,7 +28,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-block">
+                    
+                    <div class="card-block">                        
                         <div class="card-title-block">
                             <section class="example">
                                 <div class="table-responsive">
@@ -58,31 +57,28 @@
                                         </thead>
                                         <tbody>
                                             <ng-container *ngFor="let orgData of orgList">
-                                            <tr role="row" class="odd">                                            
-                                                <td>{{orgData.cd}}</td>
-                                                <td>{{orgData.ds}}</td>
-                                                <td style="width:20px;">
-                                                    <div class="item-actions-block">
-                                                        <ul class="item-actions-list">
-                                                            <li>
-                                                                <a id="FileDownload" class="btn btn-info white-color"
-                                                                    onclick="javascript: GridItemEdit(this);">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a id="FileDelete"
-                                                                    class="btn btn-info white-color remove" href="#"
-                                                                    data-toggle="modal" data-target="#confirm-modal"
-                                                                    onclick="javascript: GridDeleteItemSelect(this);"
-                                                                    style="">
-                                                                    <i class="fa fa-trash-o "></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                <tr role="row" class="odd">
+                                                    <td>{{orgData.cd}}</td>
+                                                    <td>{{orgData.ds}}</td>
+                                                    <td style="width:20px;">
+                                                        <div class="item-actions-block">
+
+                                                            <a id="FileDownload" class="btn btn-info white-color"
+                                                                style="margin-right: 10px;"
+                                                                [routerLink]="['/payroll/edit',orgData.id]">
+                                                                <i class="fa fa-pencil"></i>
+                                                            </a>
+
+                                                            <button id="FileDelete"
+                                                                class="btn btn-info white-color remove" href="#"
+                                                                data-toggle="modal" data-target="#confirm-modal"
+                                                                (click)="deletePayroll(orgData.id)">
+                                                                <i class="fa fa-trash-o "></i>
+                                                            </button>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </ng-container>
                                         </tbody>
                                     </table>
@@ -94,6 +90,5 @@
 
             </div>
         </div>
-
     </article>
 </div>

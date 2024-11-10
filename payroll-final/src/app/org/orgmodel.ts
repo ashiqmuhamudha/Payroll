@@ -4,8 +4,7 @@ export interface ISalaryGroupCondition {
     oAHId: number;
     oADId: number;
     oADCode: string;
-    oP: string;
-    cO: string;
+    oP: string;    
   }
   
   // Interface for the Main Data Structure

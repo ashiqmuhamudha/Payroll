@@ -18,8 +18,8 @@ export class OrgserviceService {
 
 
 
-  getOrgDataByCode(code: number): Observable<IOrgData> {
-    return this.http.get<IOrgData>(`${this.apiUrl}orgdatas?id=` + code).pipe(
+  getOrgDataByCode(code: number): Observable<IOrgData[]> {
+    return this.http.get<IOrgData[]>(`${this.apiUrl}orgdatas?id=` + code).pipe(
       catchError(this.handleError)
     );
   }
@@ -33,7 +33,7 @@ export class OrgserviceService {
 
   // Update an existing salary group
   updateOrgData(orgData: IOrgData): Observable<IOrgData> {
-    const url = `${this.apiUrl}orgdatas?id=${orgData.id}`;
+    const url = `${this.apiUrl}orgdatas/${orgData.id}`;
     return this.http.put<IOrgData>(url, orgData, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
@@ -41,7 +41,7 @@ export class OrgserviceService {
 
   // Delete a salary group by ID
   deleteOrgData(id: number): Observable<void> {
-    const url = `${this.apiUrl}orgdatas?id=${id}`;
+    const url = `${this.apiUrl}orgdatas/${id}`;
     return this.http.delete<void>(url);
   }
 
