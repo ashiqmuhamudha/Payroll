@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ConfigService } from './config.service';
+import { OrgserviceService } from './org/orgservice.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'payroll';
+  constructor() {}
+
+  
 }

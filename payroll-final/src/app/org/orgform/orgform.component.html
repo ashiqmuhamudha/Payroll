@@ -53,13 +53,13 @@
                                             <tbody formArrayName="salaryGroupConditionListDto">
                                                 <tr *ngFor="let condition of salaryGroupConditionListDto.controls; let i = index" [formGroupName]="i">
                                                     <td>
-                                                        <input [value]="getOrgHeaderDs(condition.get('oAHId')?.value)" placeholder="Org Header" readonly>
+                                                        <input class="form-control" [value]="getOrgHeaderDs(condition.get('oAHId')?.value)" placeholder="Org Header" readonly>
                                                     </td>
                                                     <td>
                                                         <button type="button" (click)="openOrgHeaderModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button>
                                                     </td>
                                                     <td>
-                                                        <input [value]="getOrgValueDs(condition.get('oADId')?.value)" placeholder="Org Value" readonly>
+                                                        <input class="form-control"  [value]="getOrgValueDs(condition.get('oADId')?.value)" placeholder="Org Value" readonly>
                                                     </td>
                                                     <td><button type="button" (click)="openOrgValueModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button></td>
                                                     <td>
@@ -84,8 +84,8 @@
                 <div class="form-group row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8">
-                        <button type="submit" class="btn btn-primary btn-lg" id="btn_submit">Submit</button>
-                        <button type="button" class="btn btn-danger" (click)="router.navigate(['/payroll-list'])">Cancel</button>
+                        <button type="submit"  style="margin-right: 5px;" class="btn btn-primary btn-lg" id="btn_submit">Save</button>
+                        <button type="button" class="btn btn-primary btn-lg" (click)="router.navigate(['/payroll-list'])">Cancel</button>
                     </div>
                 </div>
             </section>

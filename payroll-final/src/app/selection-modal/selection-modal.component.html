@@ -37,16 +37,24 @@
               </div>
 
 
-
-              <!-- Pagination controls -->
-              <div class="pagination-controls">
-                <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+              <div class="form-group row">
+                <div class="col-sm-8">
+                  <button class="btn btn-primary btn-lg" style="margin-right: 5px;" (click)="confirmSelection()">Confirm</button>
+                  <button class="btn btn-primary btn-lg" (click)="closeModal()">Cancel</button>
+                </div>
+                <div class="col-sm-4">
+                  <div class="pagination-controls">
+                    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+                  </div>
+                </div>
               </div>
 
-              <button (click)="confirmSelection()">Confirm</button>
-              <button (click)="closeModal()">Cancel</button>
+              <!-- Pagination controls -->
+              
+
+              
             </div>
           </div>
         </div>
