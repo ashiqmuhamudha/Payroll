@@ -19,6 +19,7 @@ export class OrgformComponent implements OnInit {
   filteredOrgValues: OrgValue[] = [];
   payrollId: number | null = null;
   isAdd: boolean = true;
+  orgFormList: IOrgData[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -32,13 +33,14 @@ export class OrgformComponent implements OnInit {
       cd: ['', Validators.required],
       ds: ['', Validators.required],
       st: ['A', Validators.required],
-      salaryGroupConditionListDto: this.fb.array([])
+      salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
     });
   }
 
   ngOnInit(): void {
     this.loadOrgHeaders();
-    this.loadOrgValues();
+    //this.loadOrgValues();
+    //this.loadOrgFormList();
 
     // Check if the route contains an 'id' parameter for edit
     this.route.paramMap.subscribe(params => {
@@ -52,9 +54,9 @@ export class OrgformComponent implements OnInit {
       }
       else {
         this.isAdd=true;
-        this.salaryForm.patchValue({
-          salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
-        })
+        // this.salaryForm.patchValue({
+        //   salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
+        // })
       }
     });
   }
@@ -84,18 +86,18 @@ export class OrgformComponent implements OnInit {
 
   // Populate form fields when editing an existing payroll
   editSalaryGroup(id: number) {
-    this.orgService.getOrgDataByCode(id).subscribe((data: IOrgData[]) => {
-      if (data && data.length > 0) {
+    this.orgService.getOrgDataByCode(id).subscribe((data: IOrgData) => {
+      if (data) {
         this.salaryForm.patchValue({
-          id: data[0].id,
-          cd: data[0].cd,
-          ds: data[0].ds,
-          st: data[0].st
+          id: data.id,
+          cd: data.cd,
+          ds: data.ds,
+          st: data.st
         });
 
         // Populate salary group conditions if available
         this.salaryGroupConditionListDto.clear(); // Clear any existing conditions
-        data[0].salaryGroupConditionListDto.forEach((condition: ISalaryGroupCondition) => {
+        data.salaryGroupConditionListDto.forEach((condition: ISalaryGroupCondition) => {
           this.salaryGroupConditionListDto.push(this.createSalaryGroupCondition(condition));
         });
       }
@@ -113,6 +115,7 @@ export class OrgformComponent implements OnInit {
           this.router.navigate(['/payroll-list']);
         });
       } else {
+        formValue.id=0;
         this.orgService.addOrgData(formValue).subscribe(response => {
           console.log('Added:', response);
           this.router.navigate(['/payroll-list']);
@@ -129,11 +132,11 @@ export class OrgformComponent implements OnInit {
   }
 
   // Load OrgValue data
-  loadOrgValues() {
-    this.orgService.getOrgValues().subscribe(data => {
-      this.orgValueOptions = data;
-    });
-  }
+  // loadOrgValues() {
+  //   this.orgService.getOrgValues().subscribe(data => {
+  //     this.orgValueOptions = data;
+  //   });
+  // }
 
   // Fetch the description based on oAHId
   getOrgHeaderDs(oAHId: number): string {
@@ -159,6 +162,21 @@ export class OrgformComponent implements OnInit {
     return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
   }
 
+  
+  // loadOrgFormList(): void {
+  //   this.orgService.getOrgData().subscribe((data: IOrgData[]) => {
+  //     this.orgFormList = data;
+  //   });
+  // }
+
+  
+  // getMaxId(): number {
+  //   if (this.orgFormList.length > 0) {
+  //     return Math.max(...this.orgFormList.map(record => record.id || 0)); 
+  //   }
+  //   return 0;  
+  // }
+
   openOrgHeaderModal(conditionIndex: number) {
     const modalRef = this.modalService.open(SelectionModalComponent, { size: 'lg' });
     modalRef.componentInstance.data = this.orgHeaderOptions;
@@ -170,6 +188,9 @@ export class OrgformComponent implements OnInit {
       if (selectedHeader) {
         const condition = this.salaryGroupConditionListDto.at(conditionIndex);
         condition.patchValue({ oAHId: selectedHeader.id });
+        this.orgService.getOrgValueById(selectedHeader.id).subscribe(data => {
+          this.orgValueOptions = data;
+        });
       }
     });
   }
