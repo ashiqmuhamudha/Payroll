@@ -35,11 +35,21 @@ export class OrgformtestComponent implements OnInit {
 
   }
 
+  createEmptyCondition(): ISalaryGroupCondition {
+    return {
+      id: 0,           
+      sId: 0,          
+      oAHId: 0,        
+      oADId: 0,        
+      oADCode: '',     
+      oP: ''    
+    };
+  }
 
   // Load data from the service
   loadOrgData() {
     this.dataService.getOrgData().subscribe(data => {
-      const salaryGroupConditionListDto: ISalaryGroupCondition[] = data[0].salaryGroupConditionListDto;
+      const salaryGroupConditionListDto: ISalaryGroupCondition[] = [this.createEmptyCondition()];;
       const conditionGroups = salaryGroupConditionListDto.map(condition => this.createConditionGroup(condition));
       this.salaryForm.setControl('salaryGroupConditionListDto', this.fb.array(conditionGroups));
     });
@@ -63,8 +73,7 @@ export class OrgformtestComponent implements OnInit {
       oAHId: [condition.oAHId],
       oADId: [condition.oADId],
       oADCode: [condition.oADCode],
-      oP: [condition.oP],
-      cO: [condition.cO]
+      oP: [condition.oP]      
     });
   }
 
@@ -79,8 +88,7 @@ export class OrgformtestComponent implements OnInit {
       oAHId: 0,
       oADId: 0,
       oADCode: '',
-      oP: '',
-      cO: ''
+      oP: ''      
     };
     const conditionGroup = this.createConditionGroup(newCondition);
     this.salaryGroupConditions.push(conditionGroup);
@@ -149,11 +157,21 @@ export class OrgformtestComponent implements OnInit {
   //   return orgValue ? orgValue.ds : '';
   // }
 
-  getOrgValueDs(oADIds: number | number[]): string {
-    // Check if oADIds is a single ID or an array
-    const ids = Array.isArray(oADIds) ? oADIds : [oADIds]; // Convert to array if it's a single ID
+  getOrgValueDs(oADIds: number | number[]): string {  
+    let ids: string[];
+
+    if (typeof oADIds === 'string') {
+      // Convert a comma-separated string of IDs into an array of numbers
+      ids = (oADIds as unknown as string).split(',').map(id => id.trim());
+    } else if (Array.isArray(oADIds)) {
+      // If it's already an array of numbers, use it directly
+      ids = oADIds.map(id => id.toString());
+    } else {
+      // If it's a single number, wrap it in an array
+      ids = [oADIds.toString()];
+    }
   
-    const selectedOrgValues = this.orgValueOptions.filter(value => ids.includes(value.id));
+    const selectedOrgValues = this.orgValueOptions.filter(value => ids.includes(value.id.toString()));
     return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
   }
 

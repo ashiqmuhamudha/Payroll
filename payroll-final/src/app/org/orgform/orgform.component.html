@@ -1,9 +1,9 @@
 <div class="app" id="app">
     <article class="content dashboard-page">
         <div class="title-block">
-            <h5 class="">Add/Edit Payroll Details</h5>
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Payroll Details</h5>
         </div>
-        <form [formGroup]="orgForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="salaryForm" (ngSubmit)="onSubmit()">
             <section class="section">
                 <div class="col-md-12">
                     <div class="card card-block ">
@@ -11,24 +11,22 @@
                         <div class="row form-group">
                             <div class="col-6">
                                 <label class="control-label">Code</label>
-                                <input type="text" class="form-control" placeholder="Enter Code">
+                                <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
                             </div>
                             <div class="col-6">
                                 <label class="control-label">Description</label>
-                                <textarea rows="3" class="form-control boxed"
-                                    placeholder="Enter description"></textarea>
+                                <input formControlName="ds" type="text" class="form-control" placeholder="Enter description">
                             </div>
                         </div>
                         <div class="row form-group">
                             <div class="col-6">
                                 <label class="control-label">Status</label>
-                                <select class="form-control">
-                                    <option>Active</option>
-                                    <option>Inactive</option>
+                                <select formControlName="st" class="form-control">
+                                    <option value="A">Active</option>
+                                    <option value="I">Inactive</option>
                                 </select>
                             </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -41,59 +39,38 @@
                             <div class="card">
                                 <div class="card-block">
                                     <div class="table-responsive">
-                                        <button type="button" (click)="addSalaryGroupCondition()">Add Row</button>
                                         <table id="ItemTable" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <!-- <th>CertificateAttachmentId</th>
-                                                <th data-override="FileName">FileName</th>
-                                                <th data-override="FileSize">FileSize</th>
-                                                <th style="width:20%">Download/Delete</th> -->
                                                     <th>Org Header</th>
-                                                    <th>Operator</th>
+                                                    <th></th>                                                    
                                                     <th>Org Value</th>
-                                                    <th>Condition</th>
+                                                    <th></th> 
+                                                    <th>Operator</th>                                                    
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            <!-- <tbody>
-                                                <tr id="tdnorecord">
-                                                    <td colspan="7" style="text-align: center">No Attachments</td>
-                                                </tr>
-                                            </tbody> -->
                                             <tbody formArrayName="salaryGroupConditionListDto">
-                                                <tr *ngFor="let condition of salaryGroupConditionListDto.controls; let i = index"
-                                                    [formGroupName]="i">
+                                                <tr *ngFor="let condition of salaryGroupConditionListDto.controls; let i = index" [formGroupName]="i">
                                                     <td>
-                                                        <!-- <select formControlName="oAHId">
-                                                            <option *ngFor="let header of orgHeaderOptions"
-                                                                [value]="header.id">
-                                                                {{ header.value }}
-                                                            </option>
-                                                        </select> -->
-                                                        <input formControlName="oAHId" placeholder="Org header" />
+                                                        <input [value]="getOrgHeaderDs(condition.get('oAHId')?.value)" placeholder="Org Header" readonly>
                                                     </td>
                                                     <td>
-                                                        <input formControlName="oP" placeholder="Operator" />
+                                                        <button type="button" (click)="openOrgHeaderModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button>
                                                     </td>
                                                     <td>
-                                                        <select formControlName="oADId" multiple>
-                                                            <option *ngFor="let option of filteredOrgValueOptions"
-                                                                [value]="option.id">
-                                                                <!-- {{ option.value }} -->
-                                                            </option>
-                                                        </select>
+                                                        <input [value]="getOrgValueDs(condition.get('oADId')?.value)" placeholder="Org Value" readonly>
                                                     </td>
+                                                    <td><button type="button" (click)="openOrgValueModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button></td>
                                                     <td>
-                                                        <!-- <input formControlName="cO" placeholder="Condition" /> -->
                                                         <select formControlName="oP" class="form-control">
-                                                            <option>Active</option>
-                                                            <option>Inactive</option>
+                                                            <option value="AND">AND</option>
+                                                            <option value="OR">OR</option>
                                                         </select>
-                                                    </td>
+                                                    </td>                                                    
                                                     <td>
-                                                        <button type="button"
-                                                            (click)="removeSalaryGroupCondition(i)">Delete</button>
+                                                        <button type="button" (click)="addSalaryGroupCondition()"><i class="fa fa-plus-square" style="font-size:28px;color:#85CE36"></i></button>
+                                                        <button type="button" (click)="removeSalaryGroupCondition(i)"><i class="fa fa-minus-square" style="font-size:28px;color:#ff4444"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -108,7 +85,7 @@
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8">
                         <button type="submit" class="btn btn-primary btn-lg" id="btn_submit">Submit</button>
-                        <button type="submit" class="btn btn-primary btn-lg" id="btn_Back">Cancel</button>
+                        <button type="button" class="btn btn-danger" (click)="router.navigate(['/payroll-list'])">Cancel</button>
                     </div>
                 </div>
             </section>

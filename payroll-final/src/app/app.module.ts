@@ -23,7 +23,7 @@ import { SelectionModalComponent } from './selection-modal/selection-modal.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, FormsModule, ReactiveFormsModule, NgbModule
+    HttpClientModule, FormsModule, ReactiveFormsModule, NgbModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

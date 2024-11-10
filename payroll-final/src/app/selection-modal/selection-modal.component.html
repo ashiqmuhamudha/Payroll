@@ -1,39 +1,54 @@
 <div>
-    <h4>{{ title }}</h4>
   
-    <!-- Search box -->
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search" class="search-box" (input)="onSearch()" />
+
+  <!-- Search box -->
   
-    <!-- Scrollable and paginated table with checkboxes for multi-selection -->
-    <div class="table-container">
-      <table class="selection-table">
-        <thead>
-          <tr>
-            <th *ngIf="isMultiSelect">Select</th>
-            <th>Code</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of paginatedData" (click)="onSelect(item)">
-            <td *ngIf="isMultiSelect">
-              <input type="checkbox" [checked]="isSelected(item)">
-            </td>
-            <td>{{ item.cd }}</td>
-            <td>{{ item.ds }}</td>
-          </tr>
-        </tbody>
-      </table>
+
+  <!-- Scrollable and paginated table with checkboxes for multi-selection -->
+  <section class="section">
+   
+    <div class="row-fluid">
+      <div class="box span12" style="width: 100%; overflow-x: auto;">
+        <div class="col-md-12">
+          <h4>{{ title }}</h4>
+          <div class="card">            
+            <div class="card-block">
+              <input type="text" [(ngModel)]="searchTerm" placeholder="Search" class="form-control" style="margin-bottom: 10px;" (input)="onSearch()" />
+              <div class="table-responsive">
+                <table id="ItemTable" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+
+                      <th *ngIf="isMultiSelect">Select</th>
+                      <th>Code</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of paginatedData" (click)="onSelect(item)">
+                      <td *ngIf="isMultiSelect">
+                        <input type="checkbox" [checked]="isSelected(item)">
+                      </td>
+                      <td>{{ item.cd }}</td>
+                      <td>{{ item.ds }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
+              <!-- Pagination controls -->
+              <div class="pagination-controls">
+                <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+              </div>
+
+              <button (click)="confirmSelection()">Confirm</button>
+              <button (click)="closeModal()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  
-    <!-- Pagination controls -->
-    <div class="pagination-controls">
-      <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-    </div>
-  
-    <button (click)="confirmSelection()">Confirm</button>
-    <button (click)="closeModal()">Cancel</button>
-  </div>
-  
