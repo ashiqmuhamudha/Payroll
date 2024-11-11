@@ -148,7 +148,7 @@ export class OrgserviceService {
 
   getOrgValueById(id: number): Observable<OrgValue[]> {
     const headers = this.createAuthorizationHeader();
-    const url = `${this.apiOrgAttributeDetails}GetHeaderById/${id}`;
+    const url = `${this.apiOrgAttributeDetails}GetHeadById/${id}`;
     return this.http.get<OrgValue[]>(url, { headers }).pipe(
       catchError(this.handleError)
     );
