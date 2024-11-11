@@ -15,6 +15,7 @@ export class OrgformComponent implements OnInit {
   salaryForm!: FormGroup;
   orgHeaderOptions: OrgHeader[] = [];
   orgValueOptions: OrgValue[] = [];
+  //orgValueSelected : OrgValue[] = []
   selectedOrgHeaderId: number | null = null;
   filteredOrgValues: OrgValue[] = [];
   payrollId: number | null = null;
@@ -39,7 +40,7 @@ export class OrgformComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOrgHeaders();
-    //this.loadOrgValues();
+    this.loadOrgValues();
     //this.loadOrgFormList();
 
     // Check if the route contains an 'id' parameter for edit
@@ -131,12 +132,12 @@ export class OrgformComponent implements OnInit {
     });
   }
 
-  // Load OrgValue data
-  // loadOrgValues() {
-  //   this.orgService.getOrgValues().subscribe(data => {
-  //     this.orgValueOptions = data;
-  //   });
-  // }
+  //Load OrgValue data
+  loadOrgValues() {
+    this.orgService.getOrgValues().subscribe(data => {
+      this.orgValueOptions = data;
+    });
+  }
 
   // Fetch the description based on oAHId
   getOrgHeaderDs(oAHId: number): string {
@@ -144,23 +145,35 @@ export class OrgformComponent implements OnInit {
     return orgHeader ? orgHeader.ds : '';
   }
 
-  getOrgValueDs(oADIds: number | number[]): string {
-    let ids: string[];
-
-    if (typeof oADIds === 'string') {
-      // Convert a comma-separated string of IDs into an array of numbers
-      ids = (oADIds as unknown as string).split(',').map(id => id.trim());
-    } else if (Array.isArray(oADIds)) {
-      // If it's already an array of numbers, use it directly
-      ids = oADIds.map(id => id.toString());
-    } else {
-      // If it's a single number, wrap it in an array
-      ids = [oADIds.toString()];
-    }
-
-    const selectedOrgValues = this.orgValueOptions.filter(value => ids.includes(value.id.toString()));
-    return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
+  getOrgValueDs(oADId: number): string {
+    const orgValue = this.orgValueOptions.find(header => header.id == oADId);
+    return orgValue ? orgValue.ds : '';
   }
+
+  // addOrgValue(selectedOrgValue: OrgValue): void {
+  //   // Add item only if not already in the array
+  //   if (this.orgValueSelected.findIndex(orgValue => orgValue.id === selectedOrgValue.id) === -1) {
+  //     this.orgValueSelected.push(selectedOrgValue);
+  //   }
+  // }
+
+  // getOrgValueDs(oADIds: number | number[]): string {
+  //   let ids: string[];
+
+  //   if (typeof oADIds === 'string') {
+  //     // Convert a comma-separated string of IDs into an array of numbers
+  //     ids = (oADIds as unknown as string).split(',').map(id => id.trim());
+  //   } else if (Array.isArray(oADIds)) {
+  //     // If it's already an array of numbers, use it directly
+  //     ids = oADIds.map(id => id.toString());
+  //   } else {
+  //     // If it's a single number, wrap it in an array
+  //     ids = [oADIds.toString()];
+  //   }
+
+  //   const selectedOrgValues = this.orgValueOptions.filter(value => ids.includes(value.id.toString()));
+  //   return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
+  // }
 
   
   // loadOrgFormList(): void {
@@ -188,9 +201,9 @@ export class OrgformComponent implements OnInit {
       if (selectedHeader) {
         const condition = this.salaryGroupConditionListDto.at(conditionIndex);
         condition.patchValue({ oAHId: selectedHeader.id });
-        this.orgService.getOrgValueById(selectedHeader.id).subscribe(data => {
-          this.orgValueOptions = data;
-        });
+        // this.orgService.getOrgValueById(selectedHeader.id).subscribe(data => {
+        //   this.orgValueOptions = data;
+        // });
       }
     });
   }
@@ -201,20 +214,21 @@ export class OrgformComponent implements OnInit {
 
     const modalRef = this.modalService.open(SelectionModalComponent, { size: 'lg' });
     modalRef.componentInstance.data = filteredOrgValues;
-    modalRef.componentInstance.isMultiSelect = true;
+    modalRef.componentInstance.isMultiSelect = false;
     modalRef.componentInstance.title = 'Select Org Value';
     modalRef.componentInstance.paginatedData = this.orgValueOptions;
 
-    modalRef.componentInstance.selectionConfirmed.subscribe((selectedValues: any[]) => {
-      if (selectedValues.length > 0) {
+    modalRef.componentInstance.selectionConfirmed.subscribe((selectedValues: any) => {
+      if (selectedValues) {
         const condition = this.salaryGroupConditionListDto.at(conditionIndex);
-        const selectedCodes = selectedValues.map(value => value.cd).join(', ');
-        const selectedIds = selectedValues.map(value => value.id).join(', ');
+        //const selectedCodes = selectedValues.map(value => value.cd).join(', ');
+        //const selectedIds = selectedValues.map(value => value.id).join(', ');
 
         // Patch the values into the form
+        //this.addOrgValue(selectedValues);
         condition.patchValue({
-          oADCode: selectedCodes,
-          oADId: selectedIds
+          oADCode: selectedValues.cd,
+          oADId: selectedValues.id
         });
       }
     });
