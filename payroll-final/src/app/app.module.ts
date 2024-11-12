@@ -13,6 +13,8 @@ import { SelectionModalComponent } from './selection-modal/selection-modal.compo
 import { ConfigService } from './config.service';
 import { OrgserviceService } from './org/orgservice.service';
 import { lastValueFrom } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 export function initializeApp(configService: ConfigService) {
   return () => configService.loadConfig();
@@ -29,7 +31,7 @@ export function initializeApp(configService: ConfigService) {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, FormsModule, ReactiveFormsModule, NgbModule, FormsModule
+    HttpClientModule, FormsModule, ReactiveFormsModule, NgbModule, FormsModule, BrowserAnimationsModule
   ],
   providers: [
     ConfigService,

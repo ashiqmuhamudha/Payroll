@@ -13,13 +13,28 @@ export class ConfigService {
 
   constructor(private http: HttpClient) {}
 
-  loadConfig() {
-    // Load configuration from `assets/config.json`
-    return lastValueFrom(this.http.get('/assets/config.json')).then(config => {
-      this.config = config;
-    });
-  }
+  async loadConfig(): Promise<void> {
+    try {
+      // Load configuration from `assets/config.json`
+      const configData = await lastValueFrom(this.http.get('/assets/config.json'));
+      this.config = configData;
 
+      // After loading config, fetch token from URL specified in config if not already in localStorage
+      if (this.config?.apiUrl && !localStorage.getItem('bearer_token')) {
+        const tokenData = await lastValueFrom(this.http.get<any>(this.config.apiUrl));
+        const token = tokenData?.token || null;
+
+        // Store token in localStorage
+        if (token) {
+          localStorage.setItem('bearer_token', token);
+        } else {
+          console.error("Failed to retrieve token.");
+        }
+      }
+    } catch (error) {
+      console.error("Error loading configuration or fetching token:", error);
+    }
+  }
   get apiUrl(): string {
     return this.config ? this.config.apiUrl : '';
   }

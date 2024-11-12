@@ -9,8 +9,8 @@
     margin: 0px auto;
 } */
 
-.header{
-    top:0;
+.header {
+    top: 0;
     position: fixed;
 }
 
@@ -18,10 +18,10 @@ select.input-sm {
     height: auto !important;
 }
 
-.margin-right-10
-{
-    margin-right:10px;
+.margin-right-10 {
+    margin-right: 10px;
 }
+
 .item-list .item-actions-dropdown .item-actions-block {
     height: 30px;
     max-width: 0px;
@@ -37,7 +37,7 @@ select.input-sm {
 }
 
 .item-actions-block {
-     max-width: 120px;
+    max-width: 120px;
 }
 
 .item-actions-block .item-actions-list {
@@ -45,49 +45,57 @@ select.input-sm {
     list-style: none;
     white-space: nowrap;
     padding: 0 5px;
-    margin:0px;
+    margin: 0px;
 }
+
 .item-actions-block .item-actions-list {
     padding: 0;
     list-style: none;
     white-space: nowrap;
     padding: 0 5px;
 }
+
 .item-actions-block .item-actions-list a.remove {
     color: #DB0E1E;
 }
+
 .item-actions-block .item-actions-list a {
     display: block;
     padding: 10px 15px;
 }
+
 .item-actions-block .item-actions-list li {
     display: inline-block;
     padding: 0;
 }
+
 .item-actions-block .item-actions-list a.edit {
     color: #38424C;
 }
+
 .item-actions-block .item-actions-list a {
     display: block;
     padding: 10px 15px;
 }
-.box-content p{margin:0px;}
+
+.box-content p {
+    margin: 0px;
+}
 
 .title-block {
     padding-bottom: 5px !important;
     margin-bottom: 15px !important;
 }
-.modal-open .modal
-{
-    opacity:1 !important;
+
+.modal-open .modal {
+    opacity: 1 !important;
 }
 
-.dt-layout-row
-{
+.dt-layout-row {
     padding-bottom: 10px;
 }
-.dt-layout-row .dt-start
-{
+
+.dt-layout-row .dt-start {
     flex: 0 0 50%;
     max-width: 50%;
     position: relative;
@@ -97,8 +105,7 @@ select.input-sm {
     float: left;
 }
 
-.dt-layout-row .dt-input
-{
+.dt-layout-row .dt-input {
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
@@ -114,23 +121,20 @@ select.input-sm {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.dt-layout-row .dt-length select 
-{
+.dt-layout-row .dt-length select {
     width: 75px !important;
     display: inline-block !important;
     line-height: 30px !important;
     height: auto !important;
 }
 
-.dt-layout-row .dt-search input
-{
+.dt-layout-row .dt-search input {
     margin-left: 0.5em;
     display: inline-block;
     width: auto;
 }
 
-.paging_full_numbers
-{
+.paging_full_numbers {
     margin: 0;
     white-space: nowrap;
     text-align: right;
@@ -139,8 +143,7 @@ select.input-sm {
     float: right;
 }
 
-.dt-paging .dt-paging-button
-{
+.dt-paging .dt-paging-button {
     margin-left: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -157,8 +160,7 @@ select.input-sm {
     transition: initial;
 }
 
-.dt-paging .current
-{
+.dt-paging .current {
     z-index: 3;
     color: #fff;
     cursor: default;
@@ -173,19 +175,56 @@ select.input-sm {
     text-decoration: none;
     border: 1px solid #ddd;
 }
-@media screen and (max-width: 767px)
-{
-.dt-layout-row .dt-start {
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-    padding: 5px;
-}
-.dt-layout-row .dt-end {
-    text-align: center;
-    width: 100%;
-    max-width: 100%;
-    padding: 5px;
-}
+
+.dt-search {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
 }
 
+.dt-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-right: 10px;
+}
+
+.dt-input {
+    width: 60%;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dt-input:focus {
+    border-color: #007bff;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.dt-input::placeholder {
+    color: #aaa;
+}
+
+.dt-input:hover {
+    border-color: #555;
+}
+
+@media screen and (max-width: 767px) {
+    .dt-layout-row .dt-start {
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .dt-layout-row .dt-end {
+        text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+    }
+}

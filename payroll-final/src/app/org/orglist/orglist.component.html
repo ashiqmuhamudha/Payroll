@@ -28,8 +28,27 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    
-                    <div class="card-block">                        
+                    <div class="form-group row">
+                        <div class="search">
+                            <!-- <input type="search" placeholder="Search" class="search-input"/> -->
+                            <input [(ngModel)]="searchTerm" type="search" (input)="applyFilter()" placeholder="Search"
+                                class="search-input" />
+                        </div>
+                    </div>
+                    <!-- <div class="dt-layout-row">
+                        <div class="dt-layout-cell dt-start "></div>
+                        <div class="dt-layout-cell dt-end ">
+                            <div class="dt-search">
+                                <label for="dt-search-0">Search:</label>
+                                
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="search-box" style="margin-bottom: 15px;">
+                        <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Search"
+                            class="form-control" />
+                    </div> -->
+                    <div class="card-block">
                         <div class="card-title-block">
                             <section class="example">
                                 <div class="table-responsive">
@@ -56,7 +75,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ng-container *ngFor="let orgData of orgList">
+                                            <ng-container
+                                                *ngFor="let orgData of filteredOrgList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
                                                 <tr role="row" class="odd">
                                                     <td>{{orgData.cd}}</td>
                                                     <td>{{orgData.ds}}</td>
@@ -84,11 +104,38 @@
                                     </table>
                                 </div>
                             </section>
+                            <!-- <div class="form-group row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    <div class="pagination-controls">
+                                        <button (click)="previousPage()"
+                                            [disabled]="currentPage === 1">Previous</button>
+                                        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                                        <button (click)="nextPage()"
+                                            [disabled]="currentPage === totalPages">Next</button>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="form-group row">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    <div class="pagination-controls">
+                                        <button (click)="previousPage()" [disabled]="currentPage === 1">
+                                            <i class="fa fa-arrow-left"></i>
+                                        </button>
+                                        <span class="page-number">Page {{ currentPage }} of {{ totalPages }}</span>
+                                        <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+
     </article>
 </div>
