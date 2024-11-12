@@ -21,6 +21,7 @@ export class OrgformComponent implements OnInit {
   payrollId: number | null = null;
   isAdd: boolean = true;
   orgFormList: IOrgData[] = [];
+  isActive: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +41,7 @@ export class OrgformComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOrgHeaders();
-    this.loadOrgValues();
+    this.loadOrgValues();    
     //this.loadOrgFormList();
 
     // Check if the route contains an 'id' parameter for edit
@@ -50,16 +51,21 @@ export class OrgformComponent implements OnInit {
 
       // If an ID exists, fetch the existing payroll data
       if (this.payrollId) {
-        this.isAdd=false;
+        this.isAdd = false;
         this.editSalaryGroup(this.payrollId);
       }
       else {
-        this.isAdd=true;
+        this.isAdd = true;
         // this.salaryForm.patchValue({
         //   salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
         // })
       }
+      this.isActive =this.salaryForm.get('st')?.value == 'A' ? true: false ;
     });
+  }
+
+  onToggleChange() {    
+    this.isActive =!this.isActive;   
   }
 
   get salaryGroupConditionListDto(): FormArray {
@@ -116,13 +122,13 @@ export class OrgformComponent implements OnInit {
           this.router.navigate(['/payroll-list']);
         });
       } else {
-        formValue.id=0;
+        formValue.id = 0;
         this.orgService.addOrgData(formValue).subscribe(response => {
           console.log('Added:', response);
           this.router.navigate(['/payroll-list']);
         });
-      }      
-    }    
+      }
+    }
   }
 
   // Load OrgHeader data
@@ -175,14 +181,14 @@ export class OrgformComponent implements OnInit {
   //   return selectedOrgValues.map(value => value.ds).join(', ');  // Join the ds values with commas
   // }
 
-  
+
   // loadOrgFormList(): void {
   //   this.orgService.getOrgData().subscribe((data: IOrgData[]) => {
   //     this.orgFormList = data;
   //   });
   // }
 
-  
+
   // getMaxId(): number {
   //   if (this.orgFormList.length > 0) {
   //     return Math.max(...this.orgFormList.map(record => record.id || 0)); 

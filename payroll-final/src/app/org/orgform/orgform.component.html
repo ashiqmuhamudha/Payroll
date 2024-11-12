@@ -18,7 +18,7 @@
                                 <input formControlName="ds" type="text" class="form-control" placeholder="Enter description">
                             </div>
                         </div>
-                        <div class="row form-group">
+                        <!-- <div class="row form-group">
                             <div class="col-6">
                                 <label class="control-label">Status</label>
                                 <select formControlName="st" class="form-control">
@@ -26,8 +26,25 @@
                                     <option value="I">Inactive</option>
                                 </select>
                             </div>
-                        </div>
-
+                        </div> -->
+                        <div class="row form-group">
+                            <div class="col-6">
+                              <label class="control-label">Status</label>
+                              <div class="toggle-switch">
+                                <input
+                                  type="checkbox"
+                                  id="status-toggle"
+                                  class="toggle-input"
+                                  [(ngModel)]="isActive"
+                                  (click)="onToggleChange()"
+                                />
+                                <label for="status-toggle" class="toggle-label"></label>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          
+                          
                     </div>
                 </div>
             </section>

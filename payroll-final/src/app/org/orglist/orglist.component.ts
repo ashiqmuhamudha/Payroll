@@ -9,15 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./orglist.component.scss']
 })
 export class OrglistComponent implements OnInit {
-
-
-  orgList: IOrgData[] | undefined;
+  orgList: IOrgData[] =[];  
+  searchTerm: string = '';
+  filteredOrgList: IOrgData[] = [];
+  paginatedData: any[] = [];
+  itemsPerPage = 5;
+  currentPage = 1;
+  totalPages = 1;
   errorMessage = "Loading. Please wait...";
 
   constructor(private _orgService: OrgserviceService, private router: Router) { }
 
   ngOnInit() {
-    this.loadPayroll();
+    this.loadPayroll();    
   }
 
   loadPayroll(){
@@ -25,6 +29,8 @@ export class OrglistComponent implements OnInit {
     .subscribe({
       next: orgResult => {
         this.orgList = orgResult;
+        this.filteredOrgList = orgResult;
+        this.updatePagination();
       },
       error: err => { this.errorMessage = err; console.log(err); }
     })
@@ -45,5 +51,35 @@ export class OrglistComponent implements OnInit {
       }
     }
     );
+  }
+
+  applyFilter() {
+    this.filteredOrgList = this.orgList.filter(orgData =>
+      orgData.cd.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+      orgData.ds.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+    this.currentPage = 1;
+    this.updatePagination();
+  }
+
+  updatePagination() {
+    this.totalPages = Math.ceil(this.filteredOrgList.length / this.itemsPerPage);
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    this.paginatedData = this.filteredOrgList.slice(start, end);
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updatePagination();
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePagination();
+    }
   }
 }
