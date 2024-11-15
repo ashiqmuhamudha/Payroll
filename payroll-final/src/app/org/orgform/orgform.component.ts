@@ -22,6 +22,7 @@ export class OrgformComponent implements OnInit {
   isAdd: boolean = true;
   orgFormList: IOrgData[] = [];
   isActive: boolean = false;
+  duplicateError: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -32,8 +33,8 @@ export class OrgformComponent implements OnInit {
   ) {
     this.salaryForm = this.fb.group({
       id: [null],
-      cd: ['', Validators.required],
-      ds: ['', Validators.required],
+      cd: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z_]+$')]],
+      ds: ['', [Validators.required, Validators.maxLength(100)]],
       st: ['A', Validators.required],
       salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
     });
@@ -41,7 +42,7 @@ export class OrgformComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadOrgHeaders();
-    this.loadOrgValues();    
+    this.loadOrgValues();
     //this.loadOrgFormList();
 
     // Check if the route contains an 'id' parameter for edit
@@ -60,13 +61,9 @@ export class OrgformComponent implements OnInit {
         //   salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
         // })
       }
-      this.isActive =this.salaryForm.get('st')?.value == 'A' ? true: false ;
     });
   }
 
-  onToggleChange() {    
-    this.isActive =!this.isActive;   
-  }
 
   get salaryGroupConditionListDto(): FormArray {
     return this.salaryForm.get('salaryGroupConditionListDto') as FormArray;
@@ -81,6 +78,26 @@ export class OrgformComponent implements OnInit {
       oADId: [condition.oADId],
       oADCode: [condition.oADCode]
     });
+  }
+
+  checkForDuplicateConditions(): boolean {
+    const conditions = this.salaryForm.get('salaryGroupConditionListDto')?.value || [];
+    const uniqueConditions = new Set();
+
+    for (const condition of conditions) {
+      const identifier = `${condition.oAHId}-${condition.oADId}-${condition.oP}`;
+      if (uniqueConditions.has(identifier)) {
+        this.duplicateError = true;
+        return true;
+      }
+      uniqueConditions.add(identifier);
+    }
+    this.duplicateError = false;
+    return false;
+  }
+
+  onToggleChange() {
+    this.isActive = !this.isActive;
   }
 
   addSalaryGroupCondition() {
@@ -101,7 +118,7 @@ export class OrgformComponent implements OnInit {
           ds: data.ds,
           st: data.st
         });
-
+        this.isActive = this.salaryForm.get('st')?.value == 'A' ? true : false;
         // Populate salary group conditions if available
         this.salaryGroupConditionListDto.clear(); // Clear any existing conditions
         data.salaryGroupConditionListDto.forEach((condition: ISalaryGroupCondition) => {
@@ -112,25 +129,32 @@ export class OrgformComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.salaryForm.valid) {
-      const formValue: IOrgData = this.salaryForm.value;
-
-      // Check if this is a new entry or an update
-      if (formValue.id) {
-        this.orgService.updateOrgData(formValue).subscribe(response => {
-          console.log('Updated:', response);
-          this.router.navigate(['/payroll-list']);
-        });
-      } else {
-        formValue.id = 0;
-        this.orgService.addOrgData(formValue).subscribe(response => {
-          console.log('Added:', response);
-          this.router.navigate(['/payroll-list']);
-        });
-      }
+    if (this.salaryForm.invalid) {
+      return;
+    }
+    if (this.checkForDuplicateConditions()) {
+      return;
+    }
+    // if (this.salaryForm.valid) {
+    const formValue: IOrgData = this.salaryForm.value;
+    formValue.st = this.isActive ? "A" : "I";
+    // Check if this is a new entry or an update
+    if (formValue.id) {
+      this.orgService.updateOrgData(formValue).subscribe(response => {
+        console.log('Updated:', response);
+        this.router.navigate(['/payroll-list']);
+      });
+    } else {
+      formValue.id = 0;
+      this.orgService.addOrgData(formValue).subscribe(response => {
+        console.log('Added:', response);
+        this.router.navigate(['/payroll-list']);
+      });
+      // }
     }
   }
 
+  
   // Load OrgHeader data
   loadOrgHeaders() {
     this.orgService.getOrgHeaders().subscribe(data => {

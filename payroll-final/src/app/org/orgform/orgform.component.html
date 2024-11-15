@@ -7,15 +7,29 @@
             <section class="section">
                 <div class="col-md-12">
                     <div class="card card-block ">
-
                         <div class="row form-group">
                             <div class="col-6">
                                 <label class="control-label">Code</label>
                                 <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
+                                <div *ngIf="salaryForm.get('cd')?.errors?.['maxlength']">
+                                    <small class="text-danger">Code cannot exceed 30 characters.</small>
+                                  </div>
+                                  <div *ngIf="salaryForm.get('cd')?.errors?.['pattern']">
+                                    <small class="text-danger">Code must be uppercase and can include underscores only.</small>
+                                  </div>
+                                  <div *ngIf="salaryForm.get('cd')?.errors?.['required']">
+                                    <small class="text-danger">Code is required.</small>
+                                  </div>
                             </div>
                             <div class="col-6">
                                 <label class="control-label">Description</label>
                                 <input formControlName="ds" type="text" class="form-control" placeholder="Enter description">
+                                <div *ngIf="salaryForm.get('ds')?.errors?.['maxlength']">
+                                    <small class="text-danger">Description cannot exceed 100 characters.</small>
+                                  </div>
+                                  <div *ngIf="salaryForm.get('ds')?.errors?.['required']">
+                                    <small class="text-danger">Description is required.</small>
+                                  </div>
                             </div>
                         </div>
                         <!-- <div class="row form-group">
@@ -31,20 +45,20 @@
                             <div class="col-6">
                               <label class="control-label">Status</label>
                               <div class="toggle-switch">
-                                <input
+                                <input                                  
                                   type="checkbox"
                                   id="status-toggle"
                                   class="toggle-input"
-                                  [(ngModel)]="isActive"
-                                  (click)="onToggleChange()"
+                                  [checked]="isActive"                                  
+                                  (change)="onToggleChange()"
                                 />
-                                <label for="status-toggle" class="toggle-label"></label>
+                                <label for="status-toggle" class="toggle-label">
+                                  <span class="toggle-text left-text">On</span>
+                                  <span class="toggle-text right-text">Off</span>
+                                </label>
                               </div>
                             </div>
-                          </div>
-                          
-                          
-                          
+                          </div>     
                     </div>
                 </div>
             </section>
@@ -70,7 +84,8 @@
                                             <tbody formArrayName="salaryGroupConditionListDto">
                                                 <tr *ngFor="let condition of salaryGroupConditionListDto.controls; let i = index" [formGroupName]="i">
                                                     <td>
-                                                        <input class="form-control" [value]="getOrgHeaderDs(condition.get('oAHId')?.value)" placeholder="Org Header" readonly>
+                                                        <input class="form-control" [value]="getOrgHeaderDs(condition.get('oAHId')?.value)" placeholder="Org Header"
+                                                        [ngClass]="{'invalid-box': condition.get('oAHId')?.value==0}" readonly>
                                                     </td>
                                                     <td>
                                                         <button type="button" (click)="openOrgHeaderModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button>
@@ -80,7 +95,7 @@
                                                     </td>
                                                     <td><button type="button" (click)="openOrgValueModal(i)"><i class="fa fa-plus-square-o" style="font-size:28px;color:#85CE36"></i></button></td>
                                                     <td>
-                                                        <select formControlName="oP" class="form-control">
+                                                        <select  formControlName="oP" class="form-control" [ngClass]="{'invalid-box': condition.get('oP')?.value == ''}">
                                                             <option value="AND">AND</option>
                                                             <option value="OR">OR</option>
                                                         </select>
@@ -98,6 +113,10 @@
                         </div>
                     </div>
                 </div>
+                <div *ngIf="duplicateError" class="text-danger">
+                    <small>Duplicate rows found in the grid. Please ensure uniqueness.</small>
+                  </div>
+          
                 <div class="form-group row">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-8">
