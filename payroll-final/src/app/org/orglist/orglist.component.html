@@ -5,7 +5,7 @@
                 <div class="card-block">
                     <div class="box-content">
                         <p class="center">
-                            <button (click)="openCreateTaskModal()" id="AddItems" class="btn btn-primary"><i
+                            <button (click)="openCreateTaskModal()" id="AddItems" style="margin-right: 5px;" class="btn btn-primary"><i
                                     class="halflings-icon white bell"></i>Add New</button>
 
                             <button onclick="javascript: ExportItems(this);" data-toggle='modal' id="ExportItems"
@@ -15,6 +15,7 @@
                             <span style="float: right; display: inline-flex; width: 40%;">
                                 <span style="min-width: 60px;">Filter : </span>
                                 <select name="dd_filter" onchange="javascript:testfunction()" id="dd_filter"
+                                [(ngModel)]="filterStatus" (change)="applyFilter()"
                                     class="dynamicdropdownposition form-control margin-right-10">
                                     <option selected="selected" value="A">Active</option>
                                     <option value="I">Inactive</option>
@@ -29,7 +30,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="form-group row">
-                        <div class="search">
+                        <div class="search" style="margin-top: 15px;">
                             <!-- <input type="search" placeholder="Search" class="search-input"/> -->
                             <input [(ngModel)]="searchTerm" type="search" (input)="applyFilter()" placeholder="Search"
                                 class="search-input" />

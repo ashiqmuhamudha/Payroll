@@ -16,6 +16,7 @@ export class OrglistComponent implements OnInit {
   itemsPerPage = 5;
   currentPage = 1;
   totalPages = 1;
+  filterStatus: string = 'A';
   errorMessage = "Loading. Please wait...";
 
   constructor(private _orgService: OrgserviceService, private router: Router) { }
@@ -30,6 +31,7 @@ export class OrglistComponent implements OnInit {
       next: orgResult => {
         this.orgList = orgResult;
         this.filteredOrgList = orgResult;
+        this.applyFilter();
         this.updatePagination();
       },
       error: err => { this.errorMessage = err; console.log(err); }
@@ -54,10 +56,12 @@ export class OrglistComponent implements OnInit {
   }
 
   applyFilter() {
-    this.filteredOrgList = this.orgList.filter(orgData =>
-      orgData.cd.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+    this.filteredOrgList = this.orgList.filter(orgData => {
+      const matchesStatus = orgData.st == this.filterStatus;
+      const matchesSearch = orgData.cd.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       orgData.ds.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+      return matchesSearch && matchesStatus;
+    });
     this.currentPage = 1;
     this.updatePagination();
   }
