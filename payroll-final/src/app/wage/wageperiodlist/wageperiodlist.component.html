@@ -87,25 +87,25 @@
                                         </thead>
                                         <tbody>
                                             <ng-container
-                                                *ngFor="let orgData of filteredWagePeriodList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+                                                *ngFor="let wagePeriodData of filteredWagePeriodList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
                                                 <tr role="row" class="odd">
-                                                    <td>{{orgData.cd}}</td>
-                                                    <td>{{orgData.pT}}</td>
-                                                    <td>{{orgData.wF}}</td>
-                                                    <td>{{orgData.wT}}</td>
+                                                    <td>{{wagePeriodData.cd}}</td>
+                                                    <td>{{wagePeriodData.pT}}</td>
+                                                    <td>{{wagePeriodData.wF}}</td>
+                                                    <td>{{wagePeriodData.wT}}</td>
                                                     <td style="width:20px;">
                                                         <div class="item-actions-block">
 
                                                             <a id="FileDownload" class="btn btn-info white-color"
                                                                 style="margin-right: 10px;"
-                                                                [routerLink]="['/wage-period/edit',orgData.id]">
+                                                                [routerLink]="['/wage-period/edit',wagePeriodData.id]">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
 
                                                             <button id="FileDelete"
                                                                 class="btn btn-info white-color remove" href="#"
                                                                 data-toggle="modal" data-target="#confirm-modal"
-                                                                (click)="deletePayroll(orgData.id)">
+                                                                (click)="deletePayroll(wagePeriodData.id)">
                                                                 <i class="fa fa-trash-o "></i>
                                                             </button>
 

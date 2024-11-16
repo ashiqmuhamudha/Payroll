@@ -45,7 +45,7 @@ export class WagePeriodService {
 
   deleteWagePeriod(id: number): Observable<void> {
     const headers = this.createAuthorizationHeader();
-    return this.http.delete<void>(`${this.apiWagePeriod}/Delete/${id}`, { headers }).pipe(catchError(this.handleError));
+    return this.http.delete<void>(`${this.apiWagePeriod}Delete/${id}`, { headers }).pipe(catchError(this.handleError));
   }
 
   private handleError(error: any) {

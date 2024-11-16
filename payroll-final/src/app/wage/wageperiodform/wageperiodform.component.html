@@ -1,7 +1,7 @@
 <div class="app" id="app">
     <article class="content dashboard-page">
         <div class="title-block">
-            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Payroll Details</h5>
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Wage Period Details</h5>
         </div>
 
         <!-- Add/Edit Form -->
@@ -20,7 +20,7 @@
             <div class="form-group">
                 <label for="wF">Wage Period From</label>
                 <input type="date" id="wF" class="form-control" formControlName="wF" />
-                <div *ngIf="wageForm.get('wF')?.invalid" class="text-danger">
+                <div *ngIf="submitted && wageForm.get('wF')?.invalid" class="text-danger">
                     Wage Period From is required.
                 </div>
                 <div *ngIf="wageForm.errors?.['wageFromOutOfRange']" class="text-danger">
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label for="tF">Tax From</label>
                 <input type="date" id="tF" class="form-control" formControlName="tF" />
-                <div *ngIf="wageForm.get('tF')?.invalid" class="text-danger">
+                <div *ngIf="submitted && wageForm.get('tF')?.invalid" class="text-danger">
                     Tax From is required.
                 </div>
             </div>
@@ -70,7 +70,7 @@
             <div class="form-group">
                 <label for="tT">Tax To</label>
                 <input type="date" id="tT" class="form-control" formControlName="tT" />
-                <div *ngIf="wageForm.get('tT')?.invalid" class="text-danger">
+                <div *ngIf="wageForm.get('tT')?.invalid  && wageForm.get('tT')?.touched" class="text-danger">
                     Tax To must be greater than Tax From.
                 </div>
             </div>
