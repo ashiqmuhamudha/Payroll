@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { OrgserviceService } from '../orgservice.service';
+import { OrgserviceService } from '../../services/orgservice.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IOrgData, ISalaryGroupCondition, OrgHeader, OrgValue } from '../orgmodel';
+import { IOrgData, ISalaryGroupCondition, OrgHeader, OrgValue } from '../../models/orgmodel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal.component';
@@ -23,6 +23,7 @@ export class OrgformComponent implements OnInit {
   orgFormList: IOrgData[] = [];
   isActive: boolean = false;
   duplicateError: boolean = false;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -129,6 +130,7 @@ export class OrgformComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     if (this.salaryForm.invalid) {
       return;
     }
