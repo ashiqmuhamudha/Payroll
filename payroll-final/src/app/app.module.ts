@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrgformtestComponent } from './org/orgformtest/orgformtest.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from './selection-modal/selection-modal.component';
-import { ConfigService } from './config.service';
-import { OrgserviceService } from './org/orgservice.service';
+import { ConfigService } from './services/config.service';
+import { OrgserviceService } from './services/orgservice.service';
 import { lastValueFrom } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
+import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 
 
 export function initializeApp(configService: ConfigService) {
@@ -26,7 +28,9 @@ export function initializeApp(configService: ConfigService) {
     OrglistComponent,
     OrgformComponent,
     OrgformtestComponent,
-    SelectionModalComponent,    
+    SelectionModalComponent,
+    WageperiodformComponent,
+    WageperiodlistComponent,    
   ],
   imports: [
     BrowserModule,

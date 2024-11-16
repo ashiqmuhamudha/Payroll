@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrgData } from '../orgmodel';
-import { OrgserviceService } from '../orgservice.service';
+import { IOrgData } from '../../models/orgmodel';
+import { OrgserviceService } from '../../services/orgservice.service';
 import { Router } from '@angular/router';
 
 @Component({

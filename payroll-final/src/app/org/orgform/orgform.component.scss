@@ -1,105 +1,105 @@
-.toggle-switch {
-  position: relative;
-  width: 60px;
-  /* Reduced width */
-  height: 30px;
-  /* Reduced height */
+// .toggle-switch {
+//   position: relative;
+//   width: 60px;
+//   /* Reduced width */
+//   height: 30px;
+//   /* Reduced height */
 
-  .toggle-input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+//   .toggle-input {
+//     opacity: 0;
+//     width: 0;
+//     height: 0;
+//   }
 
-  .toggle-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ccc;
-    border-radius: 15px;
-    /* Adjusted for smaller height */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5px;
-    /* Reduced padding */
-    transition: background-color 0.3s ease;
+//   .toggle-label {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: #ccc;
+//     border-radius: 15px;
+//     /* Adjusted for smaller height */
+//     cursor: pointer;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 0 5px;
+//     /* Reduced padding */
+//     transition: background-color 0.3s ease;
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 3px;
-      /* Adjusted for smaller height */
-      left: 3px;
-      /* Reduced offset */
-      width: 24px;
-      /* Smaller slider size */
-      height: 24px;
-      /* Smaller slider size */
-      background-color: white;
-      border-radius: 50%;
-      transition: transform 0.3s ease;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-    }
+//     &::before {
+//       content: '';
+//       position: absolute;
+//       top: 3px;
+//       /* Adjusted for smaller height */
+//       left: 3px;
+//       /* Reduced offset */
+//       width: 24px;
+//       /* Smaller slider size */
+//       height: 24px;
+//       /* Smaller slider size */
+//       background-color: white;
+//       border-radius: 50%;
+//       transition: transform 0.3s ease;
+//       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+//     }
 
-    .toggle-text {
-      font-size: 12px;
-      /* Reduced font size */
-      font-weight: bold;
-      color: white;
-      position: absolute;
-    }
+//     .toggle-text {
+//       font-size: 12px;
+//       /* Reduced font size */
+//       font-weight: bold;
+//       color: white;
+//       position: absolute;
+//     }
 
-    .left-text {
-      left: 12px;
-      /* Adjusted spacing */
-      color: #4caf50;
-      /* Green for active state */
-    }
+//     .left-text {
+//       left: 12px;
+//       /* Adjusted spacing */
+//       color: #4caf50;
+//       /* Green for active state */
+//     }
 
-    .right-text {
-      right: 12px;
-      /* Adjusted spacing */
-      color: #f44336;
-      /* Red for inactive state */
-    }
-  }
+//     .right-text {
+//       right: 12px;
+//       /* Adjusted spacing */
+//       color: #f44336;
+//       /* Red for inactive state */
+//     }
+//   }
 
-  .toggle-input:checked+.toggle-label {
-    background-color: #4caf50;
+//   .toggle-input:checked+.toggle-label {
+//     background-color: #4caf50;
 
-    &::before {
-      transform: translateX(30px);
-      /* Adjusted for smaller width */
-    }
+//     &::before {
+//       transform: translateX(30px);
+//       /* Adjusted for smaller width */
+//     }
 
-    .left-text {
-      color: white;
-      /* Text becomes visible on active state */
-    }
+//     .left-text {
+//       color: white;
+//       /* Text becomes visible on active state */
+//     }
 
-    .right-text {
-      color: transparent;
-      /* Hide inactive text */
-    }
-  }
+//     .right-text {
+//       color: transparent;
+//       /* Hide inactive text */
+//     }
+//   }
 
-  .toggle-input:not(:checked)+.toggle-label {
-    .left-text {
-      color: transparent;
-      /* Hide inactive text */
-    }
+//   .toggle-input:not(:checked)+.toggle-label {
+//     .left-text {
+//       color: transparent;
+//       /* Hide inactive text */
+//     }
 
-    .right-text {
-      color: white;
-      /* Text becomes visible on inactive state */
-    }
-  }
-}
+//     .right-text {
+//       color: white;
+//       /* Text becomes visible on inactive state */
+//     }
+//   }
+// }
 
-.invalid-box {
-  border: 2px solid red;
-}
+// .invalid-box {
+//   border: 2px solid red;
+// }

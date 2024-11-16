@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IOrgData, OrgHeader, OrgValue, ISalaryGroupCondition } from '../orgmodel';
-import { OrgserviceService } from '../orgservice.service';
+import { IOrgData, OrgHeader, OrgValue, ISalaryGroupCondition } from '../../models/orgmodel';
+import { OrgserviceService } from '../../services/orgservice.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal.component';
 
