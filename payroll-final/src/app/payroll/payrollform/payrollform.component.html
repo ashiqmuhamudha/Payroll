@@ -1,0 +1,146 @@
+<div class="app" id="app">
+    <article class="content dashboard-page">
+        <div class="title-block">
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Payroll Details</h5>
+        </div>
+        <form [formGroup]="salaryForm" (ngSubmit)="onSubmit()">
+            <section class="section">
+                <div class="col-md-12">
+                    <div class="card card-block ">
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Code</label>
+                                <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
+                                <div *ngIf="salaryForm.get('cd')?.errors?.['maxlength']">
+                                    <small class="text-danger">Code cannot exceed 30 characters.</small>
+                                </div>
+                                <div *ngIf="salaryForm.get('cd')?.errors?.['pattern']">
+                                    <small class="text-danger">Code must be uppercase and can include underscores
+                                        only.</small>
+                                </div>
+                                <div *ngIf="submitted && salaryForm.get('cd')?.errors?.['required']">
+                                    <small class="text-danger">Code is required.</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="control-label">Description</label>
+                                <input formControlName="ds" type="text" class="form-control"
+                                    placeholder="Enter description">
+                                <div *ngIf="salaryForm.get('ds')?.errors?.['maxlength']">
+                                    <small class="text-danger">Description cannot exceed 100 characters.</small>
+                                </div>
+                                <div *ngIf="submitted && salaryForm.get('ds')?.errors?.['required']">
+                                    <small class="text-danger">Description is required.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Status</label>
+                                <select formControlName="st" class="form-control">
+                                    <option value="A">Active</option>
+                                    <option value="I">Inactive</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Status</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="status-toggle" class="toggle-input" [checked]="isActive"
+                                        (change)="onToggleChange()" />
+                                    <label for="status-toggle" class="toggle-label">
+                                        <span class="toggle-text left-text">On</span>
+                                        <span class="toggle-text right-text">Off</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="row-fluid">
+                    <div class="box span12" style="width: 100%; overflow-x: auto;">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table id="ItemTable" class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Org Header</th>
+                                                    <th></th>
+                                                    <th>Org Value</th>
+                                                    <th></th>
+                                                    <th>Operator</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody formArrayName="salaryGroupConditionListDto">
+                                                <tr *ngFor="let condition of salaryGroupConditionListDto.controls; let i = index"
+                                                    [formGroupName]="i">
+                                                    <td>
+                                                        <input class="form-control"
+                                                            [value]="getOrgHeaderDs(condition.get('oAHId')?.value)"
+                                                            placeholder="Org Header"
+                                                            [ngClass]="{'invalid-box': condition.get('oAHId')?.value==0 && submitted}"
+                                                            readonly>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" (click)="openOrgHeaderModal(i)"><i
+                                                                class="fa fa-plus-square-o"
+                                                                style="font-size:28px;color:#85CE36"></i></button>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control"
+                                                            [value]="getOrgValueDs(condition.get('oADId')?.value)"
+                                                            placeholder="Org Value" readonly>
+                                                    </td>
+                                                    <td><button type="button" (click)="openOrgValueModal(i)"><i
+                                                                class="fa fa-plus-square-o"
+                                                                style="font-size:28px;color:#85CE36"></i></button></td>
+                                                    <td>
+                                                        <select formControlName="oP" class="form-control"
+                                                            [ngClass]="{'invalid-box': condition.get('oP')?.value == '' && submitted}">
+                                                            <option value="AND">AND</option>
+                                                            <option value="OR">OR</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" (click)="addSalaryGroupCondition()"><i
+                                                                class="fa fa-plus-square"
+                                                                style="font-size:28px;color:#85CE36"></i></button>
+                                                        <button type="button" (click)="removeSalaryGroupCondition(i)"><i
+                                                                class="fa fa-minus-square"
+                                                                style="font-size:28px;color:#ff4444"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div *ngIf="duplicateError" class="text-danger">
+                                            <small>Duplicate rows found in the grid. Please ensure uniqueness.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <button type="submit" style="margin-right: 5px;" class="btn btn-primary btn-lg"
+                            id="btn_submit">Save</button>
+                        <button type="button" class="btn btn-primary btn-lg"
+                            (click)="router.navigate(['/payroll-list'])">Cancel</button>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </article>
+</div>

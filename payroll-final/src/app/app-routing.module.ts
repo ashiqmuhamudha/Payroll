@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrglistComponent } from './org/orglist/orglist.component';
-import { OrgformComponent } from './org/orgform/orgform.component';
-import { OrgformtestComponent } from './org/orgformtest/orgformtest.component';
+import { PayrolllistComponent } from './payroll/payrolllist/payrolllist.component';
+import { PayrollformComponent } from './payroll/payrollform/payrollform.component';
+import { OrgformtestComponent } from './payroll/orgformtest/orgformtest.component';
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
 
 
 const routes: Routes = [
 
-  { path: 'payroll/create', component: OrgformComponent },
-  { path: 'payroll/edit/:id', component: OrgformComponent },
-  { path: 'payroll-list', component: OrglistComponent },
+  { path: 'payroll/create', component: PayrollformComponent },
+  { path: 'payroll/edit/:id', component: PayrollformComponent },
+  { path: 'payroll-list', component: PayrolllistComponent },
   { path: 'wage-period-list', component: WageperiodlistComponent },
   { path: 'wage-period-form', component: WageperiodformComponent },
   { path: 'wage-period/create', component: WageperiodformComponent },

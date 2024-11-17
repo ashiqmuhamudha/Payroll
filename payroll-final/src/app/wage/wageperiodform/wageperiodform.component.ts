@@ -33,7 +33,7 @@ export class WageperiodformComponent implements OnInit {
           tT: ['', Validators.required],
           pT: ['M', Validators.required],
           pM: ['L'],
-          sM: [{ value: null, disabled: true }, [Validators.min(1), Validators.max(31)]],
+          sM: [31, [Validators.min(1), Validators.max(31)]],
           cM: ['R'],
           cD: [{ value: null, disabled: true }, [Validators.min(0), Validators.max(99)]],
         },
@@ -92,15 +92,15 @@ export class WageperiodformComponent implements OnInit {
     });
 
     // Watch for changes in pM and toggle sM field
-    this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
-      const sMControl = this.wageForm.get('sM');
-      if (value === 'S') {
-        sMControl?.enable();
-      } else {
-        sMControl?.disable();
-        sMControl?.reset();
-      }
-    });
+    // this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
+    //   const sMControl = this.wageForm.get('sM');
+    //   if (value === 'S') {
+    //     sMControl?.enable();
+    //   } else {
+    //     sMControl?.disable();
+    //     sMControl?.reset();
+    //   }
+    // });
 
     // Watch for changes in cM and toggle cD field
     this.wageForm.get('cM')?.valueChanges.subscribe((value) => {

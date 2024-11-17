@@ -13,7 +13,7 @@ export class WageperiodlistComponent implements OnInit {
   searchTerm: string = '';
   filteredWagePeriodList: IWagePeriod[] = [];
   paginatedData: any[] = [];
-  itemsPerPage = 5;
+  itemsPerPage = 20;
   currentPage = 1;
   totalPages = 1;
   filterStatus: string = 'A';
