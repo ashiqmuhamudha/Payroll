@@ -24,16 +24,17 @@ export class WageperiodformComponent implements OnInit {
     private route: ActivatedRoute) {
       this.wageForm = this.fb.group(
         {
+          id: [0],
           cd: ['', [Validators.required, Validators.maxLength(100)]],
           wF: ['', Validators.required],
           wT: ['', Validators.required],
-          st: ['', Validators.required],
+          st: [''],
           tF: ['', Validators.required],
           tT: ['', Validators.required],
           pT: ['M', Validators.required],
-          pM: ['L', Validators.required],
-          sM: [{ value: null, disabled: true }, [Validators.min(1), Validators.max(31)]],
-          cM: ['R', Validators.required],
+          pM: ['L'],
+          sM: [31, [Validators.min(1), Validators.max(31)]],
+          cM: ['R'],
           cD: [{ value: null, disabled: true }, [Validators.min(0), Validators.max(99)]],
         },
         { validators: this.dateRangeValidator('wF', 'wT', 'tF', 'tT') }
@@ -91,15 +92,15 @@ export class WageperiodformComponent implements OnInit {
     });
 
     // Watch for changes in pM and toggle sM field
-    this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
-      const sMControl = this.wageForm.get('sM');
-      if (value === 'S') {
-        sMControl?.enable();
-      } else {
-        sMControl?.disable();
-        sMControl?.reset();
-      }
-    });
+    // this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
+    //   const sMControl = this.wageForm.get('sM');
+    //   if (value === 'S') {
+    //     sMControl?.enable();
+    //   } else {
+    //     sMControl?.disable();
+    //     sMControl?.reset();
+    //   }
+    // });
 
     // Watch for changes in cM and toggle cD field
     this.wageForm.get('cM')?.valueChanges.subscribe((value) => {
@@ -210,6 +211,7 @@ export class WageperiodformComponent implements OnInit {
     this.submitted = true;
     if (this.wageForm.valid) {
       const formData = this.wageForm.value;
+      formData.st = this.isActive ? "A" : "I";
       if (formData.id) {
         this.wageService.updateWagePeriod(formData).subscribe({
           next: () => this.router.navigate(['wage-period-list']),

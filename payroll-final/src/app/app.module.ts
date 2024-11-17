@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OrglistComponent } from './org/orglist/orglist.component';
+import { PayrolllistComponent } from './payroll/payrolllist/payrolllist.component';
 import { HttpClientModule } from '@angular/common/http';
-import { OrgformComponent } from './org/orgform/orgform.component';
+import { PayrollformComponent } from './payroll/payrollform/payrollform.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OrgformtestComponent } from './org/orgformtest/orgformtest.component';
+import { OrgformtestComponent } from './payroll/orgformtest/orgformtest.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from './selection-modal/selection-modal.component';
 import { ConfigService } from './services/config.service';
@@ -18,6 +18,7 @@ import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.co
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 
 
+
 export function initializeApp(configService: ConfigService) {
   return () => configService.loadConfig();
 }
@@ -25,8 +26,8 @@ export function initializeApp(configService: ConfigService) {
 @NgModule({
   declarations: [
     AppComponent,
-    OrglistComponent,
-    OrgformComponent,
+    PayrolllistComponent,
+    PayrollformComponent,
     OrgformtestComponent,
     SelectionModalComponent,
     WageperiodformComponent,

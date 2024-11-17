@@ -1,0 +1,57 @@
+<div class="app" id="app">
+    
+    <form [formGroup]="salaryForm">
+        <table>
+          <tr>
+            <th>Org Header</th>
+            <th>Org Value</th>
+            <th>Condition</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let condition of salaryGroupConditions.controls; let i = index" [formGroupName]="i">
+            <td>
+              <!-- Bind the display field to show selected OrgHeader ds value -->
+              <input formControlName="oAHDisplay" [value]="getOrgHeaderDs(condition.get('oAHId')?.value)"  placeholder="Org Header" readonly>
+              <button type="button" (click)="openOrgHeaderModal(i)">Select Org Header</button>
+            </td>
+            <td>
+              <!-- Display selected OrgValue "ds" in this input -->
+              <input formControlName="oADCode" [value]="getOrgValueDs(condition.get('oADId')?.value)" placeholder="Org Value" readonly>
+              <button type="button" (click)="openOrgValueModal(i)">Select Org Value</button>
+            </td>
+            <td>
+              <input formControlName="oP" placeholder="Condition">
+            </td>
+            <td>
+              <button type="button" (click)="salaryGroupConditions.removeAt(i)">Delete</button>
+            </td>
+          </tr>
+        </table>
+        <button type="button" (click)="addCondition()">Add Condition</button>
+      </form>
+      
+      <!-- <ng-template #orgHeaderModal let-modal>
+        <div>
+          <h4>Select Org Header</h4>
+          <div *ngFor="let header of orgHeaderOptions">
+            <input type="radio" (change)="modal.close(header)">
+            {{ header.ds }}
+          </div>
+          <button (click)="modal.dismiss()">Cancel</button>
+        </div>
+      </ng-template>
+      
+      <ng-template #orgValueModal let-modal>
+        <div>
+          <h4>Select Org Value</h4>
+          <div *ngFor="let value of filteredOrgValues">
+            <input type="radio" (change)="modal.close(value)">
+            {{ value.ds }}
+          </div>
+          <button (click)="modal.dismiss()">Cancel</button>
+        </div>
+      </ng-template> -->
+      
+      
+      
+</div>
