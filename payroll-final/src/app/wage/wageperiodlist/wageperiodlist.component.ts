@@ -18,6 +18,13 @@ export class WageperiodlistComponent implements OnInit {
   totalPages = 1;
   filterStatus: string = 'A';
   errorMessage = "Loading. Please wait...";
+  processTypeMap: { [key: string]: string } = {
+    M: 'Monthly',
+    F: 'Fortnight',
+    W: 'Weekly',
+    S: 'Semi'
+  };
+  
 
   constructor(private _wagePeriodService: WagePeriodService, private router: Router) { }
 
@@ -54,6 +61,7 @@ export class WageperiodlistComponent implements OnInit {
     }
     );
   }
+  
 
   applyFilter() {
     this.filteredWagePeriodList = this.wagePeriodList.filter(wagePeriodData => {

@@ -90,9 +90,9 @@
                                                 *ngFor="let wagePeriodData of filteredWagePeriodList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
                                                 <tr role="row" class="odd">
                                                     <td>{{wagePeriodData.cd}}</td>
-                                                    <td>{{wagePeriodData.pT}}</td>
-                                                    <td>{{wagePeriodData.wF}}</td>
-                                                    <td>{{wagePeriodData.wT}}</td>
+                                                    <td>{{ processTypeMap[wagePeriodData.pT] }}</td>
+                                                    <td>{{wagePeriodData.wF | date:'yyyy-MM-dd'}}</td>
+                                                    <td>{{wagePeriodData.wT | date:'yyyy-MM-dd'}}</td>
                                                     <td style="width:20px;">
                                                         <div class="item-actions-block">
 
