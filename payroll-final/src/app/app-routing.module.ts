@@ -5,6 +5,7 @@ import { PayrollformComponent } from './payroll/payrollform/payrollform.componen
 import { OrgformtestComponent } from './payroll/orgformtest/orgformtest.component';
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'wage-period-form', component: WageperiodformComponent },
   { path: 'wage-period/create', component: WageperiodformComponent },
   { path: 'wage-period/edit/:id', component: WageperiodformComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/payroll-list', pathMatch: 'full' },
   { path: 'test', component: OrgformtestComponent },
 ];

@@ -1,0 +1,70 @@
+<aside class="sidebar">
+  <div class="sidebar-container">
+    <div class="sidebar-header">
+      <div class="brand">
+        <div class="logo">
+          <img src="../assets/images/logo.png" style="width: 50%; float: right;" alt="Logo">
+        </div>
+        Admin
+      </div>
+    </div>
+    <nav class="menu">
+      <ul class="sidebar-menu" id="sidebar-menu">
+        <li class="active">
+          <a routerLinkActive="active" routerLink="payroll-list">
+            <i class="fa fa-home"></i> DASHBOARD </a>
+        </li>
+        <li *ngFor="let menu of menus" class="menu-item">
+          <!-- Main menu -->
+          <a href="javascript:void(0);" (click)="toggleSubMenu(menu)">
+            <i [class]="menu.icon"></i> {{ menu.name }}
+            <i class="fa arrow" [class.rotate]="menu.isExpanded"></i>
+          </a>
+
+          <!-- Submenu -->
+          <!-- <ul [ngClass]="{'sidebar-nav': true, 'show': menu.isExpanded}">
+            <li *ngFor="let sub of menu.subMenus" class="submenu-item">
+              <a [routerLink]="sub.link" routerLinkActive="active"> {{ sub.name }} </a>
+            </li>
+          </ul> -->
+          <!-- <ul class="sidebar-nav mm-collapse">
+            <li *ngFor="let sub of menu.subMenus" class="submenu-item">
+              <a [routerLink]="sub.link" routerLinkActive="active">{{ sub.name }}</a>
+            </li>
+          </ul> -->
+          <ul [ngClass]="{'sidebar-nav': true, 'show': menu.isExpanded}">
+            <li *ngFor="let sub of menu.subMenus" class="submenu-item">
+              <a [routerLink]="sub.link" routerLinkActive="active">{{ sub.name }}</a>
+            </li>
+          </ul>
+          
+          
+          
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <footer class="sidebar-footer">
+    <ul class="sidebar-menu metismenu" id="customize-menu">
+      <li>
+        <ul>
+          <li class="customize" *ngFor="let setting of settings">
+            <div class="customize-item">
+              <div class="row" *ngFor="let link of setting.links">
+                <div class="col-12">
+                  <a [href]="link.url">
+                    <i [class]="link.icon"></i> {{ link.name }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <a href="#">
+          <i class="fa fa-cog"></i> Settings
+        </a>
+      </li>
+    </ul>
+  </footer>
+</aside>
+<router-outlet></router-outlet>
