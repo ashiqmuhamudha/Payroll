@@ -19,6 +19,7 @@ import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.co
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { ReplacePipe } from './Pipe/replace.pipe';
 import { LoginComponent } from './login/login.component';
+import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 
 
 
@@ -37,7 +38,8 @@ export function initializeApp(configService: ConfigService) {
     WageperiodlistComponent,
     SidebarComponent,
     ReplacePipe,
-    LoginComponent,    
+    LoginComponent,
+    MainlayoutComponent,    
   ],
   imports: [
     BrowserModule,
