@@ -16,6 +16,10 @@ import { lastValueFrom } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
+import { SidebarComponent } from './menu/sidebar/sidebar.component';
+import { ReplacePipe } from './Pipe/replace.pipe';
+import { LoginComponent } from './login/login.component';
+import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 
 
 
@@ -31,7 +35,11 @@ export function initializeApp(configService: ConfigService) {
     OrgformtestComponent,
     SelectionModalComponent,
     WageperiodformComponent,
-    WageperiodlistComponent,    
+    WageperiodlistComponent,
+    SidebarComponent,
+    ReplacePipe,
+    LoginComponent,
+    MainlayoutComponent,    
   ],
   imports: [
     BrowserModule,
