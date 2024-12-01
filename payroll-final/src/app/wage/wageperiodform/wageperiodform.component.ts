@@ -39,34 +39,6 @@ export class WageperiodformComponent implements OnInit {
         },
         { validators: this.dateRangeValidator('wF', 'wT', 'tF', 'tT') }
       );
-    // this.wageForm = this.fb.group({
-    //   id: [0],
-    //   cd: ['', [Validators.required, Validators.maxLength(100)]],
-    //   wF: ['', Validators.required],
-    //   wT: ['', [Validators.required, this.dateRangeValidator('wF')]],
-    //   st: ['', Validators.required],
-    //   tF: ['', Validators.required],
-    //   tT: ['', [Validators.required, this.dateRangeValidator('tF')]],
-    //   pT: ['M'],
-    //   pM: ['L'],
-    //   sM: [0],
-    //   cM: ['R'],
-    //   cD: [0]
-    // });
-    // this.wageForm = this.fb.group({
-    //   id: [0],
-    //   cd: ['', Validators.required, Validators.maxLength(100)],
-    //   wF: ['', Validators.required],
-    //   wT: ['', [Validators.required]],
-    //   st: [''],
-    //   tF: ['', Validators.required],
-    //   tT: ['', [Validators.required]],
-    //   pT: ['M'],
-    //   pM: ['L'],
-    //   sM: [0],
-    //   cM: ['R'],
-    //   cD: [0]
-    // });
   }
 
 
@@ -84,23 +56,11 @@ export class WageperiodformComponent implements OnInit {
         this.editWagePeriod(this.wagePeriodlId);
       }
       else {
-        this.isAdd = true;
-        // this.salaryForm.patchValue({
-        //   salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
-        // })
+        this.isAdd = true;       
       }
     });
 
-    // Watch for changes in pM and toggle sM field
-    // this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
-    //   const sMControl = this.wageForm.get('sM');
-    //   if (value === 'S') {
-    //     sMControl?.enable();
-    //   } else {
-    //     sMControl?.disable();
-    //     sMControl?.reset();
-    //   }
-    // });
+
 
     // Watch for changes in cM and toggle cD field
     this.wageForm.get('cM')?.valueChanges.subscribe((value) => {
@@ -128,17 +88,6 @@ export class WageperiodformComponent implements OnInit {
       }
     });
   }
-
-  // dateRangeValidator(compareField: string) {
-  //   return (control: any) => {
-  //     const form = control?.parent;
-  //     if (!form) return null;
-  //     const compareValue = form.get(compareField)?.value;
-  //     return compareValue && new Date(control.value) <= new Date(compareValue)
-  //       ? { dateRangeInvalid: true }
-  //       : null;
-  //   };
-  // }
 
   dateRangeValidator(
     wageFromField: string,
@@ -185,27 +134,11 @@ export class WageperiodformComponent implements OnInit {
     if (!dateString) return '';
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Add leading zero
-    const day = String(date.getDate()).padStart(2, '0'); // Add leading zero
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const day = String(date.getDate()).padStart(2, '0'); 
     return `${year}-${month}-${day}`;
   }
-  // loadWagePeriods() {
-  //   this.wageService.getWagePeriods().subscribe({
-  //     next: (data) => (this.wagePeriods = data),
-  //     error: (err) => console.error('Error fetching wage periods:', err)
-  //   });
-  // }
 
-  // editWagePeriod(wage: IWagePeriod) {
-  //   this.wageForm.patchValue(wage);
-  // }
-
-  // deleteWagePeriod(id: number) {
-  //   this.wageService.deleteWagePeriod(id).subscribe({
-  //     next: () => this.loadWagePeriods(),
-  //     error: (err) => console.error('Error deleting wage period:', err)
-  //   });
-  // }
 
   onSubmit() {
     this.submitted = true;
@@ -233,7 +166,7 @@ export class WageperiodformComponent implements OnInit {
   private formatDateForSubmit(dateString: string): string {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toISOString(); // Convert back to ISO format
+    return date.toISOString();
   }
 
 

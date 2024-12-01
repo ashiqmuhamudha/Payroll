@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PayrolllistComponent } from './payroll/payrolllist/payrolllist.component';
 import { PayrollformComponent } from './payroll/payrollform/payrollform.component';
-import { OrgformtestComponent } from './payroll/orgformtest/orgformtest.component';
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
 import { LoginComponent } from './login/login.component';
@@ -18,14 +17,14 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'payroll/create', component: PayrollformComponent },
-      { path: 'payroll/edit/:id', component: PayrollformComponent },
-      { path: 'payroll-list', component: PayrolllistComponent },
-      { path: 'wage-period-list', component: WageperiodlistComponent },
+      { path: 'salary-group/create', component: PayrollformComponent },
+      { path: 'salary-group/edit/:id', component: PayrollformComponent },
+      { path: 'salary-group', component: PayrolllistComponent },
+      { path: 'wage-period', component: WageperiodlistComponent },
       { path: 'wage-period-form', component: WageperiodformComponent },
       { path: 'wage-period/create', component: WageperiodformComponent },
       { path: 'wage-period/edit/:id', component: WageperiodformComponent },
-      { path: '', redirectTo: '/payroll-list', pathMatch: 'full' },
+      { path: '', redirectTo: '/salary-group', pathMatch: 'full' },
     ],
   },
 ];

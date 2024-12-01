@@ -10,5 +10,8 @@ export interface IWagePeriod {
   pM: string; // Pay on Month
   sM: number;  // Specific Day of Month
   cM: string; // Calculation Mode
-  cD: number;  // Custom Days
+  cuD: number;  // Custom Days
 }
+
+
+

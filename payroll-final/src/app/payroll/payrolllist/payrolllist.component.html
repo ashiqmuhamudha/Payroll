@@ -5,8 +5,8 @@
                 <div class="card-block">
                     <div class="box-content">
                         <p class="center">
-                            <button (click)="openCreateTaskModal()" id="AddItems" style="margin-right: 5px;" class="btn btn-primary"><i
-                                    class="halflings-icon white bell"></i>Add New</button>
+                            <button (click)="openCreateTaskModal()" id="AddItems" style="margin-right: 5px;"
+                                class="btn btn-primary"><i class="halflings-icon white bell"></i>Add New</button>
 
                             <button onclick="javascript: ExportItems(this);" data-toggle='modal' id="ExportItems"
                                 class="btn btn-primary"><i class="fa fa-download"> &nbsp;</i>Export</button>
@@ -15,7 +15,7 @@
                             <span style="float: right; display: inline-flex; width: 40%;">
                                 <span style="min-width: 60px;">Filter : </span>
                                 <select name="dd_filter" onchange="javascript:testfunction()" id="dd_filter"
-                                [(ngModel)]="filterStatus" (change)="applyFilter()"
+                                    [(ngModel)]="filterStatus" (change)="applyFilter()"
                                     class="dynamicdropdownposition form-control margin-right-10">
                                     <option selected="selected" value="A">Active</option>
                                     <option value="I">Inactive</option>
@@ -31,24 +31,10 @@
                 <div class="card">
                     <div class="form-group row">
                         <div class="search" style="margin-top: 15px;">
-                            <!-- <input type="search" placeholder="Search" class="search-input"/> -->
-                            <input [(ngModel)]="searchTerm" type="search" (input)="applyFilter()" placeholder="Search"
+                            <input [(ngModel)]="searchTerm" type="search" (input)="search()" placeholder="Search"
                                 class="search-input" />
                         </div>
                     </div>
-                    <!-- <div class="dt-layout-row">
-                        <div class="dt-layout-cell dt-start "></div>
-                        <div class="dt-layout-cell dt-end ">
-                            <div class="dt-search">
-                                <label for="dt-search-0">Search:</label>
-                                
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="search-box" style="margin-bottom: 15px;">
-                        <input [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Search"
-                            class="form-control" />
-                    </div> -->
                     <div class="card-block">
                         <div class="card-title-block">
                             <section class="example">
@@ -63,12 +49,12 @@
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Code: activate to sort column descending"
-                                                    style="width: 96px;">Code</th>
+                                                    (click)="sort('CODE')" style="width: 96px;">Code</th>
                                                 <th scope="col" class="sorting_asc" tabindex="0"
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Description: activate to sort column descending"
-                                                    style="width: 96px;">Description</th>
+                                                    (click)="sort('DESCRIPTION')" style="width: 96px;">Description</th>
                                                 <th scope="col" class="sorting" tabindex="0"
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-label="Action: activate to sort column ascending"
@@ -76,47 +62,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ng-container
-                                                *ngFor="let orgData of filteredOrgList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
-                                                <tr role="row" class="odd">
-                                                    <td>{{orgData.cd}}</td>
-                                                    <td>{{orgData.ds}}</td>
-                                                    <td style="width:20px;">
-                                                        <div class="item-actions-block">
+                                            <!-- <ng-container *ngFor="let orgData of filteredOrgList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage"> -->
+                                            <ng-container *ngFor="let orgData of filteredOrgList ">
+                                            <tr role="row" class="odd">
+                                                <td>{{orgData.cd}}</td>
+                                                <td>{{orgData.ds}}</td>
+                                                <td style="width:20px;">
+                                                    <div class="item-actions-block">
 
-                                                            <a id="FileDownload" class="btn btn-info white-color"
-                                                                style="margin-right: 10px;"
-                                                                [routerLink]="['/payroll/edit',orgData.id]">
-                                                                <i class="fa fa-pencil"></i>
-                                                            </a>
+                                                        <a id="FileDownload" class="btn btn-info white-color"
+                                                            style="margin-right: 10px;"
+                                                            [routerLink]="['/salary-group/edit',orgData.id]">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
 
-                                                            <button id="FileDelete"
-                                                                class="btn btn-info white-color remove" href="#"
-                                                                data-toggle="modal" data-target="#confirm-modal"
-                                                                (click)="deletePayroll(orgData.id)">
-                                                                <i class="fa fa-trash-o "></i>
-                                                            </button>
+                                                        <button id="FileDelete" class="btn btn-info white-color remove"
+                                                            href="#" data-toggle="modal" data-target="#confirm-modal"
+                                                            (click)="deletePayroll(orgData.id)">
+                                                            <i class="fa fa-trash-o "></i>
+                                                        </button>
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             </ng-container>
                                         </tbody>
                                     </table>
                                 </div>
                             </section>
-                            <!-- <div class="form-group row">
-                                <div class="col-sm-8"></div>
-                                <div class="col-sm-4">
-                                    <div class="pagination-controls">
-                                        <button (click)="previousPage()"
-                                            [disabled]="currentPage === 1">Previous</button>
-                                        <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                                        <button (click)="nextPage()"
-                                            [disabled]="currentPage === totalPages">Next</button>
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="form-group row">
                                 <div class="col-sm-8"></div>
                                 <div class="col-sm-4">
@@ -137,6 +110,5 @@
 
             </div>
         </div>
-
     </article>
 </div>

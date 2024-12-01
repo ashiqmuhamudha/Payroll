@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./mainlayout.component.scss']
 })
 export class MainlayoutComponent {
+  isDropdownOpen: boolean = false;
 
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
 }
