@@ -7,7 +7,6 @@ import { PayrolllistComponent } from './payroll/payrolllist/payrolllist.componen
 import { HttpClientModule } from '@angular/common/http';
 import { PayrollformComponent } from './payroll/payrollform/payrollform.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OrgformtestComponent } from './payroll/orgformtest/orgformtest.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from './selection-modal/selection-modal.component';
 import { ConfigService } from './services/config.service';
@@ -32,7 +31,6 @@ export function initializeApp(configService: ConfigService) {
     AppComponent,
     PayrolllistComponent,
     PayrollformComponent,
-    OrgformtestComponent,
     SelectionModalComponent,
     WageperiodformComponent,
     WageperiodlistComponent,

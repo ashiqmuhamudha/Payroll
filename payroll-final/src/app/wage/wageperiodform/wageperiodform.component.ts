@@ -35,38 +35,10 @@ export class WageperiodformComponent implements OnInit {
           pM: ['L'],
           sM: [31, [Validators.min(1), Validators.max(31)]],
           cM: ['R'],
-          cD: [{ value: null, disabled: true }, [Validators.min(0), Validators.max(99)]],
+          cuD: [{ value: null, disabled: true }, [Validators.min(0), Validators.max(99)]],
         },
         { validators: this.dateRangeValidator('wF', 'wT', 'tF', 'tT') }
       );
-    // this.wageForm = this.fb.group({
-    //   id: [0],
-    //   cd: ['', [Validators.required, Validators.maxLength(100)]],
-    //   wF: ['', Validators.required],
-    //   wT: ['', [Validators.required, this.dateRangeValidator('wF')]],
-    //   st: ['', Validators.required],
-    //   tF: ['', Validators.required],
-    //   tT: ['', [Validators.required, this.dateRangeValidator('tF')]],
-    //   pT: ['M'],
-    //   pM: ['L'],
-    //   sM: [0],
-    //   cM: ['R'],
-    //   cD: [0]
-    // });
-    // this.wageForm = this.fb.group({
-    //   id: [0],
-    //   cd: ['', Validators.required, Validators.maxLength(100)],
-    //   wF: ['', Validators.required],
-    //   wT: ['', [Validators.required]],
-    //   st: [''],
-    //   tF: ['', Validators.required],
-    //   tT: ['', [Validators.required]],
-    //   pT: ['M'],
-    //   pM: ['L'],
-    //   sM: [0],
-    //   cM: ['R'],
-    //   cD: [0]
-    // });
   }
 
 
@@ -84,27 +56,15 @@ export class WageperiodformComponent implements OnInit {
         this.editWagePeriod(this.wagePeriodlId);
       }
       else {
-        this.isAdd = true;
-        // this.salaryForm.patchValue({
-        //   salaryGroupConditionListDto: this.fb.array([this.createSalaryGroupCondition()])
-        // })
+        this.isAdd = true;       
       }
     });
 
-    // Watch for changes in pM and toggle sM field
-    // this.wageForm.get('pM')?.valueChanges.subscribe((value) => {
-    //   const sMControl = this.wageForm.get('sM');
-    //   if (value === 'S') {
-    //     sMControl?.enable();
-    //   } else {
-    //     sMControl?.disable();
-    //     sMControl?.reset();
-    //   }
-    // });
 
-    // Watch for changes in cM and toggle cD field
+
+    // Watch for changes in cM and toggle cuD field
     this.wageForm.get('cM')?.valueChanges.subscribe((value) => {
-      const cDControl = this.wageForm.get('cD');
+      const cDControl = this.wageForm.get('cuD');
       if (value === 'C') {
         cDControl?.enable();
       } else {
@@ -129,17 +89,6 @@ export class WageperiodformComponent implements OnInit {
     });
   }
 
-  // dateRangeValidator(compareField: string) {
-  //   return (control: any) => {
-  //     const form = control?.parent;
-  //     if (!form) return null;
-  //     const compareValue = form.get(compareField)?.value;
-  //     return compareValue && new Date(control.value) <= new Date(compareValue)
-  //       ? { dateRangeInvalid: true }
-  //       : null;
-  //   };
-  // }
-
   dateRangeValidator(
     wageFromField: string,
     wageToField: string,
@@ -152,9 +101,9 @@ export class WageperiodformComponent implements OnInit {
       const taxFrom = formGroup.get(taxFromField)?.value;
       const taxTo = formGroup.get(taxToField)?.value;
 
-      if (!wageFrom || !wageTo || !taxFrom || !taxTo) {
-        return null; // Skip validation if any field is empty
-      }
+      // if (!wageFrom || !wageTo || !taxFrom || !taxTo) {
+      //   return null;
+      // }
 
       const wageFromDate = new Date(wageFrom);
       const wageToDate = new Date(wageTo);
@@ -168,6 +117,9 @@ export class WageperiodformComponent implements OnInit {
         errors.wageToInvalid = true;
       }
 
+      if (taxToDate <= taxFromDate) {
+        errors.taxToInvalid = true;
+      }
       // Check if Wage Period To is between Tax From and Tax To
       if (wageToDate < taxFromDate || wageToDate > taxToDate) {
         errors.wageToOutOfRange = true;
@@ -185,27 +137,11 @@ export class WageperiodformComponent implements OnInit {
     if (!dateString) return '';
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Add leading zero
-    const day = String(date.getDate()).padStart(2, '0'); // Add leading zero
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const day = String(date.getDate()).padStart(2, '0'); 
     return `${year}-${month}-${day}`;
   }
-  // loadWagePeriods() {
-  //   this.wageService.getWagePeriods().subscribe({
-  //     next: (data) => (this.wagePeriods = data),
-  //     error: (err) => console.error('Error fetching wage periods:', err)
-  //   });
-  // }
 
-  // editWagePeriod(wage: IWagePeriod) {
-  //   this.wageForm.patchValue(wage);
-  // }
-
-  // deleteWagePeriod(id: number) {
-  //   this.wageService.deleteWagePeriod(id).subscribe({
-  //     next: () => this.loadWagePeriods(),
-  //     error: (err) => console.error('Error deleting wage period:', err)
-  //   });
-  // }
 
   onSubmit() {
     this.submitted = true;
@@ -214,12 +150,12 @@ export class WageperiodformComponent implements OnInit {
       formData.st = this.isActive ? "A" : "I";
       if (formData.id) {
         this.wageService.updateWagePeriod(formData).subscribe({
-          next: () => this.router.navigate(['wage-period-list']),
+          next: () => this.router.navigate(['wage-period']),
           error: (err) => console.error('Error updating wage period:', err)
         });
       } else {
         this.wageService.createWagePeriod(formData).subscribe({
-          next: () => this.router.navigate(['wage-period-list']),
+          next: () => this.router.navigate(['wage-period']),
           error: (err) => console.error('Error creating wage period:', err)
         });
       }
@@ -233,7 +169,7 @@ export class WageperiodformComponent implements OnInit {
   private formatDateForSubmit(dateString: string): string {
     if (!dateString) return '';
     const date = new Date(dateString);
-    return date.toISOString(); // Convert back to ISO format
+    return date.toISOString();
   }
 
 

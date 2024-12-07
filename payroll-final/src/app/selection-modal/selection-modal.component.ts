@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SelectionmodelService } from '../services/selectionmodel.service';
 
 @Component({
   selector: 'app-selection-modal',
@@ -7,58 +8,105 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./selection-modal.component.scss']
 })
 export class SelectionModalComponent implements OnInit {
-  @Input() data: any[] = [];            // Data list (e.g., orgHeader or orgValue)
-  @Input() isMultiSelect: boolean = false; // Multi-selection toggle
-  @Input() title: string = 'Select Item'; // Modal title
-  @Output() selectionConfirmed = new EventEmitter<any | any[]>(); // Emit selected data
+  @Input() data: any[] = [];
+  @Input() url: string = '';  // Base API URL      
+  @Input() isMultiSelect: boolean = false;
+  @Input() title: string = 'Select Item';
+  @Output() selectionConfirmed = new EventEmitter<any | any[]>();
 
   searchTerm: string = '';
   filteredData: any[] = [];
-  paginatedData: any[] = [];
-  itemsPerPage = 5;
-  currentPage = 1;
-  totalPages = 1;
+  // paginatedData: any[] = [];
+  items: any[] = [];  
+  totalItems: number = 0;  
+  pageNumber: number = 1; 
+  pageSize: number = 5; 
+  totalPages: number = 1;  
+  hasPreviousPage: boolean = false; 
+  hasNextPage: boolean = false; 
 
   selectedItems: Set<any> = new Set();
+  sortColumn: string = 'CODE';
+  sortDirection: string = 'ASC';
 
-  constructor(public activeModal: NgbActiveModal){
+  constructor(public activeModal: NgbActiveModal, private selModelService: SelectionmodelService) {
 
   }
 
+  // ngOnInit() {
+  //   this.filteredData = [...this.data];
+  //   this.updatePagination();
+  // }
+
   ngOnInit() {
-    this.filteredData = [...this.data];
-    this.updatePagination();
+    this.fetchData();
+  }
+  buildUrl(): string {
+    return `${this.url}?PageNumber=${this.pageNumber}&PageSize=${this.pageSize}&SearchValue=${this.searchTerm || 'ALL'}&SortColumn=${this.sortColumn}&SortDirection=${this.sortDirection}`;
+  }
+
+  fetchData() {
+    const apiUrl = this.buildUrl();
+    this.selModelService.getData(apiUrl).subscribe({
+      next: (response: any) => {
+        this.items = response.items;  
+        this.totalItems = response.totalItems;  
+        this.pageNumber = response.pageNumber; 
+        this.pageSize = response.pageSize;  
+        this.totalPages = response.totalPages; 
+        this.hasPreviousPage = response.hasPreviousPage;  
+        this.hasNextPage = response.hasNextPage;  
+      },
+      error: (error) => {
+        console.error('Error fetching data:', error);
+      }
+    });
   }
 
   onSearch() {
-    this.filteredData = this.data.filter(item =>
-      item.ds.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      item.cd.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
-    this.currentPage = 1;
-    this.updatePagination();
+    this.pageNumber = 1;  
+    this.fetchData();
   }
 
-  updatePagination() {
-    this.totalPages = Math.ceil(this.filteredData.length / this.itemsPerPage);
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.paginatedData = this.filteredData.slice(start, end);
-  }
+  // onSearch() {
+  //   this.filteredData = this.data.filter(item =>
+  //     item.ds.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     item.cd.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //   );
+  //   this.currentPage = 1;
+  //   this.updatePagination();
+  // }
 
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePagination();
+  // updatePagination() {
+  //   this.totalPages = Math.ceil(this.filteredData.length / this.itemsPerPage);
+  //   const start = (this.currentPage - 1) * this.itemsPerPage;
+  //   const end = start + this.itemsPerPage;
+  //   this.paginatedData = this.filteredData.slice(start, end);
+  // }
+
+  // Handle pagination
+  updatePagination(action: 'next' | 'previous') {
+    if (action === 'next' && this.hasNextPage) {
+      this.pageNumber++;
+    } else if (action === 'previous' && this.hasPreviousPage) {
+      this.pageNumber--;
     }
+    this.fetchData();
   }
 
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.updatePagination();
-    }
-  }
+  // previousPage() {
+  //   if (this.currentPage > 1) {
+  //     this.currentPage--;
+  //     this.updatePagination();
+  //   }
+  // }
+
+  // nextPage() {
+  //   if (this.currentPage < this.totalPages) {
+  //     this.currentPage++;
+  //     this.updatePagination();
+  //   }
+  // }
 
   onSelect(item: any) {
     if (this.isMultiSelect) {
@@ -78,36 +126,39 @@ export class SelectionModalComponent implements OnInit {
     } else {
       this.selectedItems.add(item);
     }
-  } 
+  }
 
   isSelected(item: any): boolean {
     return this.selectedItems.has(item);
   }
 
-  // openModal(content: any) {
-  //   const modalRef = this.modalService.open(content, { size: 'lg' });
-  //   modalRef.componentInstance.modal = modalRef; 
-  //   modalRef.result.then(
-  //     (result) => {
-  //       // Handle the result
-  //       console.log('Modal closed with result:', result);
-  //     },
-  //     (reason) => {
-  //       // Handle dismiss reason
-  //       console.log('Modal dismissed:', reason);
-  //     }
-  //   );
+  // confirmSelection() {
+  //   if (this.isMultiSelect) {
+  //     this.selectionConfirmed.emit(Array.from(this.selectedItems));
+  //     this.activeModal.close(this.selectedItems);
+  //   }
   // }
+
+  updateSorting(column: string) {
+    if (this.sortColumn === column) {      
+      this.sortDirection = this.sortDirection === 'ASC' ? 'DESC' : 'ASC';
+    } else {      
+      this.sortColumn = column;
+      this.sortDirection = 'ASC';
+    }
+    this.fetchData();  
+  }
 
   confirmSelection() {
     if (this.isMultiSelect) {
       this.selectionConfirmed.emit(Array.from(this.selectedItems));
-      this.activeModal.close(this.selectedItems);
+    } else {
+      this.selectionConfirmed.emit(this.selectedItems.size ? Array.from(this.selectedItems)[0] : null);
     }
+    this.activeModal.close();
   }
-
   // Close the modal
   closeModal() {
-    this.activeModal.dismiss(); // Dismiss the modal
+    this.activeModal.dismiss();
   }
 }

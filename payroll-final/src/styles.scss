@@ -3,188 +3,204 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 .toggle-switch {
-    position: relative;
-    width: 60px;
-    /* Reduced width */
-    height: 30px;
-    /* Reduced height */
-  
-    .toggle-input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-  
-    .toggle-label {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #ccc;
-      border-radius: 15px;
-      /* Adjusted for smaller height */
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5px;
-      /* Reduced padding */
-      transition: background-color 0.3s ease;
-  
-      &::before {
-        content: '';
-        position: absolute;
-        top: 3px;
-        /* Adjusted for smaller height */
-        left: 3px;
-        /* Reduced offset */
-        width: 24px;
-        /* Smaller slider size */
-        height: 24px;
-        /* Smaller slider size */
-        background-color: white;
-        border-radius: 50%;
-        transition: transform 0.3s ease;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-      }
-  
-      .toggle-text {
-        font-size: 12px;
-        /* Reduced font size */
-        font-weight: bold;
-        color: white;
-        position: absolute;
-      }
-  
-      .left-text {
-        left: 12px;
-        /* Adjusted spacing */
-        color: #4caf50;
-        /* Green for active state */
-      }
-  
-      .right-text {
-        right: 12px;
-        /* Adjusted spacing */
-        color: #f44336;
-        /* Red for inactive state */
-      }
-    }
-  
-    .toggle-input:checked+.toggle-label {
-      background-color: #4caf50;
-  
-      &::before {
-        transform: translateX(30px);
-        /* Adjusted for smaller width */
-      }
-  
-      .left-text {
-        color: white;
-        /* Text becomes visible on active state */
-      }
-  
-      .right-text {
-        color: transparent;
-        /* Hide inactive text */
-      }
-    }
-  
-    .toggle-input:not(:checked)+.toggle-label {
-      .left-text {
-        color: transparent;
-        /* Hide inactive text */
-      }
-  
-      .right-text {
-        color: white;
-        /* Text becomes visible on inactive state */
-      }
-    }
+  position: relative;
+  width: 60px;
+  /* Reduced width */
+  height: 30px;
+  /* Reduced height */
+
+  .toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 
-  .invalid-box {
-    border: 2px solid red;
-  }
-
-  .search {
-    $padding: 15px;
-    
-    width: max-content;
+  .toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    border-radius: 15px;
+    /* Adjusted for smaller height */
+    cursor: pointer;
     display: flex;
     align-items: center;
-    padding: $padding;
-    border-radius: 28px;
-    background: #f6f6f6;
-    width: 600px;
-    margin-left: 30px;
-    margin-top: 5px;
+    justify-content: space-between;
+    padding: 0 5px;
+    /* Reduced padding */
+    transition: background-color 0.3s ease;
 
-  
-    .search-input {
-      font-size: 16px;
-      font-family: 'Lexend', sans-serif;
-      color: #333333;
-      margin-left: $padding;      
-      border: none;
-      background: transparent;
-      width: 300px;
-      flex: 1;
-    }   
+    &::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      /* Adjusted for smaller height */
+      left: 3px;
+      /* Reduced offset */
+      width: 24px;
+      /* Smaller slider size */
+      height: 24px;
+      /* Smaller slider size */
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-text {
+      font-size: 12px;
+      /* Reduced font size */
+      font-weight: bold;
+      color: white;
+      position: absolute;
+    }
+
+    .left-text {
+      left: 12px;
+      /* Adjusted spacing */
+      color: #4caf50;
+      /* Green for active state */
+    }
+
+    .right-text {
+      right: 12px;
+      /* Adjusted spacing */
+      color: #f44336;
+      /* Red for inactive state */
+    }
   }
 
-  .pagination-controls {
+  .toggle-input:checked+.toggle-label {
+    background-color: #4caf50;
+
+    &::before {
+      transform: translateX(30px);
+      /* Adjusted for smaller width */
+    }
+
+    .left-text {
+      color: white;
+      /* Text becomes visible on active state */
+    }
+
+    .right-text {
+      color: transparent;
+      /* Hide inactive text */
+    }
+  }
+
+  .toggle-input:not(:checked)+.toggle-label {
+    .left-text {
+      color: transparent;
+      /* Hide inactive text */
+    }
+
+    .right-text {
+      color: white;
+      /* Text becomes visible on inactive state */
+    }
+  }
+}
+
+.invalid-box {
+  border: 2px solid red !important;
+}
+
+.search {
+  $padding: 15px;
+  $border-color: #ccc;
+
+  width: max-content;
+  display: flex;
+  align-items: center;
+  padding: $padding;
+  border-radius: 28px;
+  background: #f6f6f6;
+  width: 600px;
+  margin-left: 30px;
+  margin-top: 5px;
+
+  border: 1px solid $border-color;
+
+  // Optional hover effect
+  &:hover {
+    border-color: darken($border-color, 10%);
+  }
+
+  .search-input {
+    font-size: 16px;
+    font-family: 'Lexend', sans-serif;
+    color: #333333;
+    margin-left: $padding;
+    border: none;
+    background: transparent;
+    width: 300px;
+    flex: 1;
+  }
+
+  &:focus {
+    border-color: lighten($border-color, 10%);
+    box-shadow: 0 0 5px lighten($border-color, 30%);
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  button {
+    background-color: #e0f2f1; // Light green color
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-  
-    button {
-      background-color: #e0f2f1; // Light green color
-      border: none;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: #a5d6a7;
-      }
-  
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-      }
-  
-      i {
-        font-size: 16px;
-        color: #333;
-      }
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a5d6a7;
     }
-  
-    .page-number {
-      background-color: #e0f2f1; // Light green circle
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    i {
+      font-size: 16px;
       color: #333;
-      font-weight: bold;
-      border-radius: 50%;
-      padding: 8px 14px;
-      font-size: 14px;
     }
   }
 
-  .mm-show {
-    height: auto !important;
+  .page-number {
+    background-color: #e0f2f1; // Light green circle
+    color: #333;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 8px 14px;
+    font-size: 14px;
   }
-  
-  
-  
+}
+
+.mm-show {
+  height: auto !important;
+}

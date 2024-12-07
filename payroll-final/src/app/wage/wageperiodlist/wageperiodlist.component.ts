@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IWagePeriod } from 'src/app/models/wageperiodmodel';
+import { IWagePeriod, IWagePeriodList } from 'src/app/models/wageperiodmodel';
 import { WagePeriodService } from 'src/app/services/wageperiod.service';
 
 @Component({
@@ -24,7 +24,11 @@ export class WageperiodlistComponent implements OnInit {
     W: 'Weekly',
     S: 'Semi'
   };
-  
+  sortColumn = 'CODE';
+  sortDirection = 'ASC';
+  totalItems = 0;
+  hasNextPage = false;
+  hasPreviousPage = false;
 
   constructor(private _wagePeriodService: WagePeriodService, private router: Router) { }
 
@@ -33,16 +37,38 @@ export class WageperiodlistComponent implements OnInit {
   }
 
   loadPayroll(){
-    this._wagePeriodService.getWagePeriods()
+    this._wagePeriodService.getWagePeriods(this.currentPage, this.itemsPerPage, this.searchTerm, this.sortColumn, this.sortDirection)
     .subscribe({
-      next: wagePeriodResult => {
-        this.wagePeriodList = wagePeriodResult;
-        this.filteredWagePeriodList = wagePeriodResult;
+      next: (response: IWagePeriodList) => {
+        this.wagePeriodList = response.items;
+        // this.filteredWagePeriodList = wagePeriodResult;
+        // this.applyFilter();
+        // this.updatePagination();
+        // this.orgList = response.items;
+        this.totalItems = response.totalItems;
+        this.currentPage = response.pageNumber;
+        this.itemsPerPage = response.pageSize;
+        this.totalPages = response.totalPages;
+        this.hasNextPage = response.hasNextPage;
+        this.hasPreviousPage = response.hasPreviousPage;
         this.applyFilter();
-        this.updatePagination();
       },
       error: err => { this.errorMessage = err; console.log(err); }
     })
+  }
+
+  search() {    
+    this.loadPayroll();
+  }
+
+  sort(column: string) {
+    if (this.sortColumn === column) {
+      this.sortDirection = this.sortDirection === 'ASC' ? 'DESC' : 'ASC';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'ASC';
+    }
+    this.loadPayroll();
   }
 
   openCreateTaskModal() {
@@ -62,18 +88,20 @@ export class WageperiodlistComponent implements OnInit {
     );
   }
   
-
   applyFilter() {
-    this.filteredWagePeriodList = this.wagePeriodList.filter(wagePeriodData => {
-      const matchesStatus = wagePeriodData.st == this.filterStatus;
-      // const matchesSearch = wagePeriodData.cd.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      // wagePeriodData.ds.toLowerCase().includes(this.searchTerm.toLowerCase())
-      // return matchesSearch && matchesStatus;
-      return matchesStatus;
-    });
-    this.currentPage = 1;
-    this.updatePagination();
+    this.filteredWagePeriodList = this.wagePeriodList.filter(orgData => orgData.st === this.filterStatus);
   }
+  // applyFilter() {
+  //   this.filteredWagePeriodList = this.wagePeriodList.filter(wagePeriodData => {
+  //     const matchesStatus = wagePeriodData.st == this.filterStatus;
+  //     // const matchesSearch = wagePeriodData.cd.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+  //     // wagePeriodData.ds.toLowerCase().includes(this.searchTerm.toLowerCase())
+  //     // return matchesSearch && matchesStatus;
+  //     return matchesStatus;
+  //   });
+  //   this.currentPage = 1;
+  //   this.updatePagination();
+  // }
 
   updatePagination() {
     this.totalPages = Math.ceil(this.filteredWagePeriodList.length / this.itemsPerPage);
@@ -82,17 +110,31 @@ export class WageperiodlistComponent implements OnInit {
     this.paginatedData = this.filteredWagePeriodList.slice(start, end);
   }
 
+  // previousPage() {
+  //   if (this.currentPage > 1) {
+  //     this.currentPage--;
+  //     this.updatePagination();
+  //   }
+  // }
+
+  // nextPage() {
+  //   if (this.currentPage < this.totalPages) {
+  //     this.currentPage++;
+  //     this.updatePagination();
+  //   }
+  // }
+
   previousPage() {
-    if (this.currentPage > 1) {
+    if (this.hasPreviousPage) {
       this.currentPage--;
-      this.updatePagination();
+      this.loadPayroll();
     }
   }
 
   nextPage() {
-    if (this.currentPage < this.totalPages) {
+    if (this.hasNextPage) {
       this.currentPage++;
-      this.updatePagination();
+      this.loadPayroll();
     }
   }
 }

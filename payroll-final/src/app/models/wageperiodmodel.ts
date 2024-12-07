@@ -1,14 +1,25 @@
 export interface IWagePeriod {
   id: number;
-  cd: string; // Code
-  wF: string; // Wage Period From
-  wT: string; // Wage Period To
-  st: string; // Status
-  tF: string; // Tax From
-  tT: string; // Tax To
-  pT: string; // Process Type
-  pM: string; // Pay on Month
-  sM: number;  // Specific Day of Month
-  cM: string; // Calculation Mode
-  cD: number;  // Custom Days
+  cd: string; 
+  wF: string; 
+  wT: string; 
+  st: string; 
+  tF: string; 
+  tT: string; 
+  pT: string; 
+  pM: string; 
+  sM: number; 
+  cM: string; 
+  cuD: number;  
 }
+
+export interface IWagePeriodList {
+  items: IWagePeriod[];
+  totalItems: number;
+  pageNumber: number;
+  pageSize: number;
+  totalPages: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+}
+

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { IWagePeriod } from '../models/wageperiodmodel';
+import { IWagePeriod, IWagePeriodList } from '../models/wageperiodmodel';
 import { ConfigService } from './config.service';
 
 
@@ -23,9 +23,23 @@ export class WagePeriodService {
     return token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : new HttpHeaders();
   }
 
-  getWagePeriods(): Observable<IWagePeriod[]> {
+  // getWagePeriods(): Observable<IWagePeriod[]> {
+  //   const headers = this.createAuthorizationHeader();
+  //   return this.http.get<IWagePeriod[]>(`${this.apiWagePeriod}GetAllRecord`, { headers }).pipe(catchError(this.handleError));
+  // }
+
+  getWagePeriods(
+    pageNumber: number,
+    pageSize: number,
+    searchValue: string,
+    sortColumn: string,
+    sortDirection: string
+  ): Observable<IWagePeriodList> {
     const headers = this.createAuthorizationHeader();
-    return this.http.get<IWagePeriod[]>(`${this.apiWagePeriod}GetAllRecord`, { headers }).pipe(catchError(this.handleError));
+    const url = `${this.apiWagePeriod}Pagination?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchValue=${searchValue || 'ALL'}&SortColumn=${sortColumn}&SortDirection=${sortDirection}`;
+    return this.http.get<IWagePeriodList>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
   }
 
   getWagePeriodById(id: number): Observable<IWagePeriod> {
