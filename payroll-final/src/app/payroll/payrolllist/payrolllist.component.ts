@@ -79,12 +79,12 @@ export class PayrolllistComponent implements OnInit {
   //   this.updatePagination();
   // }
 
-  updatePagination() {
-    this.totalPages = Math.ceil(this.filteredOrgList.length / this.itemsPerPage);
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.paginatedData = this.filteredOrgList.slice(start, end);
-  }
+  // updatePagination() {
+  //   this.totalPages = Math.ceil(this.filteredOrgList.length / this.itemsPerPage);
+  //   const start = (this.currentPage - 1) * this.itemsPerPage;
+  //   const end = start + this.itemsPerPage;
+  //   this.paginatedData = this.filteredOrgList.slice(start, end);
+  // }
 
   // previousPage() {
   //   if (this.currentPage > 1) {

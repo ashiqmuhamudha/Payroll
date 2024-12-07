@@ -17,7 +17,7 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'salary-group/create', component: PayrollformComponent },
+      { path: 'salaryT-group/create', component: PayrollformComponent },
       { path: 'salary-group/edit/:id', component: PayrollformComponent },
       { path: 'salary-group', component: PayrolllistComponent },
       { path: 'wage-period', component: WageperiodlistComponent },

@@ -87,6 +87,11 @@
                                                             placeholder="Org Header"
                                                             [ngClass]="{'invalid-box': condition.get('oAHId')?.value==0 && submitted}"
                                                             readonly>
+                                                        <!-- <input class="form-control"
+                                                            [value]="fetchOrgHeaderDescription(condition.get('oAHId')?.value)"
+                                                            placeholder="Org Header"
+                                                            [ngClass]="{'invalid-box': condition.get('oAHId')?.value == 0 && submitted}"
+                                                            readonly> -->
                                                     </td>
                                                     <td>
                                                         <button type="button" (click)="openOrgHeaderModal(i)"><i
@@ -97,6 +102,9 @@
                                                         <input class="form-control"
                                                             [value]="getOrgValueDs(condition.get('oADId')?.value)"
                                                             placeholder="Org Value" readonly>
+                                                        <!-- <input class="form-control"
+                                                            [value]="fetchOrgValueDescription(condition.get('oADId')?.value)"
+                                                            placeholder="Org Value" readonly> -->
                                                     </td>
                                                     <td><button type="button" (click)="openOrgValueModal(i)"><i
                                                                 class="fa fa-plus-square-o"
@@ -124,7 +132,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>

@@ -69,6 +69,9 @@
                         <label for="tT">Tax To</label>
                         <input type="date" id="tT" class="form-control" formControlName="tT" />
                         <div *ngIf="wageForm.get('tT')?.invalid  && wageForm.get('tT')?.touched">
+                            <small class="text-danger">Tax To is required.</small>
+                        </div>
+                        <div *ngIf="wageForm.errors?.['taxToInvalid']">
                             <small class="text-danger">Tax To must be greater than Tax From.</small>
                         </div>
                     </div>

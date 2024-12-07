@@ -32,7 +32,7 @@
                     <div class="form-group row">
                         <div class="search" style="margin-top: 15px;">
                             <!-- <input type="search" placeholder="Search" class="search-input"/> -->
-                            <input [(ngModel)]="searchTerm" type="search" (input)="applyFilter()" placeholder="Search"
+                            <input [(ngModel)]="searchTerm" type="search" (input)="search()" placeholder="Search"
                                 class="search-input" />
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                             <tr role="row">
                                                 <th scope="col" class="sorting_asc" tabindex="0"
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
-                                                    
+                                                    (click)="sort('CODE')" 
                                                     aria-label="Code: activate to sort column descending"
                                                     style="width: 96px;">Code</th>
                                                 <th scope="col" class="sorting_asc" tabindex="0"
@@ -86,8 +86,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ng-container
-                                                *ngFor="let wagePeriodData of filteredWagePeriodList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage">
+                                            <!-- <ng-container *ngFor="let wagePeriodData of filteredWagePeriodList | slice:(currentPage - 1) * itemsPerPage : currentPage * itemsPerPage"> -->
+                                                <ng-container *ngFor="let wagePeriodData of filteredWagePeriodList">
                                                 <tr role="row" class="odd">
                                                     <td>{{wagePeriodData.cd}}</td>
                                                     <td>{{ processTypeMap[wagePeriodData.pT] }}</td>

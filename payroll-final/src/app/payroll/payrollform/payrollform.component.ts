@@ -24,6 +24,8 @@ export class PayrollformComponent implements OnInit {
   isActive: boolean = false;
   duplicateError: boolean = false;
   submitted = false;
+  orgHeaderCache: Map<number, string> = new Map();
+  orgValueCache: Map<number, string> = new Map();
 
   constructor(
     private fb: FormBuilder,
@@ -42,13 +44,13 @@ export class PayrollformComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loadOrgHeaders();
-    // this.loadOrgValues();
+     this.loadOrgHeaders();
+     this.loadOrgValues();
     //this.loadOrgFormList();
 
     // Check if the route contains an 'id' parameter for edit
     this.route.paramMap.subscribe(params => {
-      const id = +params.get('id')!;  // Use the ID from the route (e.g., 2)
+      const id = +params.get('id')!;  
       this.payrollId = id;
 
       // If an ID exists, fetch the existing payroll data
@@ -176,25 +178,41 @@ export class PayrollformComponent implements OnInit {
   }
 
   // Fetch the description based on oAHId
-  getOrgHeaderDs(oAHId: number): string {
-    //  const orgHeader = this.orgHeaderOptions.find(header => header.id == oAHId);
-    // return orgHeader ? orgHeader.ds : ''
-    this.orgService.getOrgHeaderById(oAHId).subscribe(orgHeader => {
-      //this.orgValueOptions = data;
-      return orgHeader ? orgHeader.ds : '';
-    });
-    return '';
+  getOrgHeaderDs(oAHId: number): string {    
+    const orgHeader = this.orgHeaderOptions.find(header => header.id == oAHId);
+    return orgHeader ? orgHeader.ds : '';
   }
 
-  getOrgValueDs(oADId: number): string {
-    // const orgValue = this.orgValueOptions.find(header => header.id == oADId);
-    // return orgValue ? orgValue.ds : '';
-    this.orgService.getOrgValueById(oADId).subscribe(orgValue => {
-      //this.orgValueOptions = data;
-      return orgValue ? orgValue.ds : '';
-    });
-    return '';
+  getOrgValueDs(oADId: number): string {   
+    const orgValue = this.orgValueOptions.find(header => header.id == oADId);
+    return orgValue ? orgValue.ds : '';
   }
+
+  // fetchOrgHeaderDescription(oAHId: number): string {
+  //   if (this.orgHeaderCache.has(oAHId)) {
+  //     return this.orgHeaderCache.get(oAHId) || '';
+  //   } else if (oAHId) {
+  //     this.orgService.getOrgHeaderById(oAHId).subscribe(header => {
+  //       if (header) {
+  //         this.orgHeaderCache.set(oAHId, header.ds);
+  //       }
+  //     });
+  //   }
+  //   return '';
+  // }
+
+  // fetchOrgValueDescription(oADId: number): string {
+  //   if (this.orgValueCache.has(oADId)) {
+  //     return this.orgValueCache.get(oADId) || '';
+  //   } else if (oADId) {
+  //     this.orgService.getOrgValueById(oADId).subscribe(value => {
+  //       if (value) {
+  //         this.orgValueCache.set(oADId, value.ds);
+  //       }
+  //     });
+  //   }
+  //   return '';
+  // }
 
 
   openOrgHeaderModal(conditionIndex: number) {
