@@ -70,25 +70,25 @@
           </footer>
         </div>
       </li>
-      <li class="profile dropdown" (document:click)="closeDropdown()">
+      <li [ngClass]="{'profile dropdown': true,'show': isDropdownOpen}" (document:click)="closeDropdown()">
         <!-- Trigger Button -->
         <a class="nav-link dropdown-toggle" (click)="toggleDropdown(); $event.stopPropagation()" role="button" aria-haspopup="true" [attr.aria-expanded]="isDropdownOpen">
           <div class="img" style="background-image: url('assets/images/user.png')"></div>
           <span class="name"> Sarathraj </span>
         </a>
         <!-- Dropdown Menu -->
-        <div class="dropdown-menu profile-dropdown-menu" [hidden]="!isDropdownOpen">
-          <a class="dropdown-item" href="#">
+        <div [ngClass]="{'dropdown-menu profile-dropdown-menu': true,'show': isDropdownOpen}" >
+          <a class="dropdown-item">
             <i class="fa fa-user icon"></i> Profile
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item">
             <i class="fa fa-bell icon"></i> Notifications
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item">
             <i class="fa fa-gear icon"></i> Settings
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="login.html">
+          <a class="dropdown-item" role="button" (click)="logout()">
             <i class="fa fa-power-off icon"></i> Logout
           </a>
         </div>

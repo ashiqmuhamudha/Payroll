@@ -11208,7 +11208,7 @@ input[type="button"].btn-block {
 }
 
 .dropdown-menu.show {
-  display: block;
+  display: block !important;
 }
 
 .dropdown-header {

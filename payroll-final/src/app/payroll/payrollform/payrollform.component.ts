@@ -55,7 +55,7 @@ export class PayrollformComponent implements OnInit {
 
       // If an ID exists, fetch the existing payroll data
       if (this.payrollId) {
-        this.isAdd = false;
+        this.isAdd = false;        
         this.editSalaryGroup(this.payrollId);
       }
       else {

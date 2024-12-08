@@ -52,7 +52,7 @@ export class WageperiodformComponent implements OnInit {
 
       // If an ID exists, fetch the existing payroll data
       if (this.wagePeriodlId) {
-        this.isAdd = false;
+        this.isAdd = false;        
         this.editWagePeriod(this.wagePeriodlId);
       }
       else {

@@ -10,7 +10,7 @@
                         <div class="row form-group">
                             <div class="col-6">
                                 <label class="control-label">Code</label>
-                                <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
+                                <input formControlName="cd" type="text" class="form-control" [readOnly]="!isAdd" placeholder="Enter Code">
                                 <div *ngIf="salaryForm.get('cd')?.errors?.['maxlength']">
                                     <small class="text-danger">Code cannot exceed 30 characters.</small>
                                 </div>

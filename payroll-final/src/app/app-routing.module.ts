@@ -5,19 +5,19 @@ import { PayrollformComponent } from './payroll/payrollform/payrollform.componen
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './auth.guard';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
 
-  { path: 'login', component: LoginComponent }, // Public route
+  { path: 'login', component: LoginComponent},
   {
     path: '', // Main layout for authenticated routes
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'salaryT-group/create', component: PayrollformComponent },
+      { path: 'salary-group/create', component: PayrollformComponent },
       { path: 'salary-group/edit/:id', component: PayrollformComponent },
       { path: 'salary-group', component: PayrolllistComponent },
       { path: 'wage-period', component: WageperiodlistComponent },

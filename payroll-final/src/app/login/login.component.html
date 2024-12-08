@@ -8,20 +8,32 @@
           <div class="col-md-7 auth-content">
             <h3>Login to <strong>Organization</strong></h3>
             <p class="mb-4">Description about the Organization</p>
-            <form (ngSubmit)="onLogin()" id="login-form">
+            <form (ngSubmit)="onLogin()" #loginForm="ngForm" id="login-form">
               <div class="form-group first">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" [(ngModel)]="username" id="username" required />
+                <input type="text" name="uname" class="form-control" #unameModel="ngModel" [(ngModel)]="uname" id="username" required />
+                <div *ngIf="unameModel.invalid && (unameModel.dirty || unameModel.touched)" class="text-danger">
+                  <small *ngIf="unameModel.errors?.['required']">Username is required.</small>
+                </div>
               </div>
               <div class="form-group last mb-3">
                 <label for="password">Password</label>
                 <input
                   type="password"
+                  name="pwd"
                   class="form-control"
-                  [(ngModel)]="password"
+                  [(ngModel)]="pwd"
                   id="password"
+                  #pwdModel="ngModel"
                   required
                 />
+                <div *ngIf="pwdModel.invalid && (pwdModel.dirty || pwdModel.touched)" class="text-danger">
+                  <small *ngIf="pwdModel.errors?.['required']">Password is required.</small>
+                  <small *ngIf="pwdModel.errors?.['minlength']">Password must be at least 6 characters long.</small>
+                </div>
+              </div>
+              <div class="text-danger mb-3" *ngIf="errorMessage">
+                <small>{{ errorMessage }}</small>
               </div>
               <div class="d-flex mb-5 align-items-center">
                 <label class="control control--checkbox mb-0">
