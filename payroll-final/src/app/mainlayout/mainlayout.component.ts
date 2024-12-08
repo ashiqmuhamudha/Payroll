@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mainlayout',
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class MainlayoutComponent {
   isDropdownOpen: boolean = false;
+  constructor(private authService : AuthService, private router : Router){}
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -15,4 +18,14 @@ export class MainlayoutComponent {
   closeDropdown() {
     this.isDropdownOpen = false;
   }
+
+  logout() : void{
+    this.authService.logout();  
+  }
+  // @HostListener('document:click', ['$event'])
+  // onDocumentClick(event: Event): void {
+  //   if (this.isDropdownOpen) {
+  //     this.closeDropdown();
+  //   }
+  // }
 }

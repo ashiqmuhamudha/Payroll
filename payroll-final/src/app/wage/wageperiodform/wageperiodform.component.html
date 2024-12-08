@@ -10,7 +10,7 @@
                 <div class="row form-group">
                     <div class="form-group col-6">
                         <label for="cd">Code</label>
-                        <input type="text" id="cd" class="form-control" formControlName="cd" />
+                        <input type="text" id="cd" class="form-control" [readOnly]="!isAdd" formControlName="cd" />
                         <div *ngIf="wageForm.get('cd')?.errors?.['maxlength']">
                             <small class="text-danger">Code cannot exceed 100 characters.</small>
                         </div>
@@ -102,9 +102,9 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="cuD">Custom Days</label>
-                        <input type="number" id="cuD" formControlName="cuD" class="form-control" min="0" max="99" />
+                        <input type="number" id="cuD" formControlName="cuD" class="form-control" min="0" max="31" />
                         <div *ngIf="wageForm.get('cuD')?.invalid">
-                            <small class="text-danger">Custom Days must be between 0 and 99.</small>
+                            <small class="text-danger">Custom Days must be between 0 and 31.</small>
                         </div>
                     </div>
                 </div>

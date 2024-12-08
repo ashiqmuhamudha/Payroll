@@ -18,19 +18,17 @@ export class ConfigService {
       // Load configuration from `assets/config.json`
       const configData = await lastValueFrom(this.http.get('/assets/config.json'));
       this.config = configData;
-
-      // After loading config, fetch token from URL specified in config if not already in localStorage
-      if (this.config?.apiUrl && !localStorage.getItem('bearer_token')) {
-        const tokenData = await lastValueFrom(this.http.get<any>(this.config.apiUrl));
-        const token = tokenData?.token || null;
-
-        // Store token in localStorage
-        if (token) {
-          localStorage.setItem('bearer_token', token);
-        } else {
-          console.error("Failed to retrieve token.");
-        }
-      }
+      
+      // if (this.config?.apiUrl && !localStorage.getItem('bearer_token')) {
+      //   const tokenData = await lastValueFrom(this.http.get<any>(this.config.apiUrl));
+      //   const token = tokenData?.token || null;
+        
+      //   if (token) {
+      //     localStorage.setItem('bearer_token', token);
+      //   } else {
+      //     console.error("Failed to retrieve token.");
+      //   }
+      // }
     } catch (error) {
       console.error("Error loading configuration or fetching token:", error);
     }

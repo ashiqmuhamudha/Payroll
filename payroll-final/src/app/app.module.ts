@@ -11,12 +11,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from './selection-modal/selection-modal.component';
 import { ConfigService } from './services/config.service';
 import { OrgserviceService } from './services/orgservice.service';
-import { lastValueFrom } from 'rxjs';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.component';
 import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.component';
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
-import { ReplacePipe } from './Pipe/replace.pipe';
 import { LoginComponent } from './login/login.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 
@@ -34,8 +33,7 @@ export function initializeApp(configService: ConfigService) {
     SelectionModalComponent,
     WageperiodformComponent,
     WageperiodlistComponent,
-    SidebarComponent,
-    ReplacePipe,
+    SidebarComponent,    
     LoginComponent,
     MainlayoutComponent,    
   ],
