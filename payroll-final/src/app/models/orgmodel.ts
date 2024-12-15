@@ -34,10 +34,20 @@ export interface OrgHeader {
   st: string;
 }
 
-export interface OrgValue {
+export interface OrgDetail {
   id: number;
   oId: number;
   cd: string;
   ds: string;
   st: string;
+}
+
+export interface IOrgDetail {
+  items: OrgDetail[];
+  totalItems: number;
+  pageNumber: number;
+  pageSize: number;
+  totalPages: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
 }

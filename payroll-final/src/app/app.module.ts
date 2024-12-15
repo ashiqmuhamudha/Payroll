@@ -18,6 +18,8 @@ import { WageperiodlistComponent } from './wage/wageperiodlist/wageperiodlist.co
 import { SidebarComponent } from './menu/sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
+import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.component';
+import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
 
 
 
@@ -35,7 +37,9 @@ export function initializeApp(configService: ConfigService) {
     WageperiodlistComponent,
     SidebarComponent,    
     LoginComponent,
-    MainlayoutComponent,    
+    MainlayoutComponent,
+    OrgattdetailComponent,
+    OrgattdetaillistComponent,    
   ],
   imports: [
     BrowserModule,
