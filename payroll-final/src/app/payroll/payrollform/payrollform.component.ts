@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrgserviceService } from '../../services/orgservice.service';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ISalaryData, ISalaryGroupCondition, OrgHeader, OrgValue } from '../../models/orgmodel';
+import { ISalaryData, ISalaryGroupCondition, OrgHeader, OrgDetail } from '../../models/orgmodel';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal.component';
@@ -14,10 +14,10 @@ import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal
 export class PayrollformComponent implements OnInit {
   salaryForm!: FormGroup;
   orgHeaderOptions: OrgHeader[] = [];
-  orgValueOptions: OrgValue[] = [];
-  //orgValueSelected : OrgValue[] = []
+  orgValueOptions: OrgDetail[] = [];
+  //orgValueSelected : OrgDetail[] = []
   selectedOrgHeaderId: number | null = null;
-  filteredOrgValues: OrgValue[] = [];
+  filteredOrgValues: OrgDetail[] = [];
   payrollId: number | null = null;
   isAdd: boolean = true;
   orgFormList: ISalaryData[] = [];
@@ -168,7 +168,7 @@ export class PayrollformComponent implements OnInit {
     }
   }
 
-  //Load OrgValue data
+  //Load OrgDetail data
   loadOrgValues() {
     if (this.orgValueOptions) {
       this.orgService.getOrgValues().subscribe(data => {

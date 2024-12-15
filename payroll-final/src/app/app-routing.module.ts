@@ -7,6 +7,8 @@ import { WageperiodformComponent } from './wage/wageperiodform/wageperiodform.co
 import { LoginComponent } from './login/login.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { AuthGuard } from './guard/auth.guard';
+import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.component';
+import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,9 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'org-attributes-details/create', component: OrgattdetailComponent },
+      { path: 'org-attributes-details', component: OrgattdetaillistComponent },
+      { path: 'org-attributes-details/edit/:id', component: OrgattdetailComponent },
       { path: 'salary-group/create', component: PayrollformComponent },
       { path: 'salary-group/edit/:id', component: PayrollformComponent },
       { path: 'salary-group', component: PayrolllistComponent },

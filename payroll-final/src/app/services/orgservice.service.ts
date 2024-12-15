@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISalaryData, ISalaryList, OrgHeader, OrgValue } from '../models/orgmodel';
+import { ISalaryData, ISalaryList, OrgHeader, OrgDetail, IOrgDetail } from '../models/orgmodel';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -69,6 +69,54 @@ export class OrgserviceService {
     );
   }
 
+  getOrgDetails(
+    pageNumber: number,
+    pageSize: number,
+    searchValue: string,
+    sortColumn: string,
+    sortDirection: string
+  ): Observable<IOrgDetail> {
+    const headers = this.createAuthorizationHeader();
+    const url = `${this.apiOrgAttributeDetails}Pagination?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchValue=${searchValue || 'ALL'}&SortColumn=${sortColumn}&SortDirection=${sortDirection}`;
+    return this.http.get<IOrgDetail>(url, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+    // Get Org Data by Code (GET with Token)
+    getOrgDetailAttributeByCode(code: number): Observable<OrgDetail> {
+      const headers = this.createAuthorizationHeader();
+      return this.http.get<OrgDetail>(`${this.apiOrgAttributeDetails}GetById/${code}`, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
+  
+    // Add a new salary group (POST with Token)
+    addOrgDetailAttribute(orgData: OrgDetail): Observable<OrgDetail> {
+      const headers = this.createAuthorizationHeader();
+      return this.http.post<OrgDetail>(`${this.apiOrgAttributeDetails}Add/`, orgData, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
+  
+    // Update an existing salary group (PUT with Token)
+    updateOrgDetailAttribute(orgData: OrgDetail): Observable<OrgDetail> {
+      const headers = this.createAuthorizationHeader();
+      const url = `${this.apiOrgAttributeDetails}Update/${orgData.id}`;
+      return this.http.put<OrgDetail>(url, orgData, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
+
+    // Delete a salary group by ID (DELETE with Token)
+    deleteOrgDetailAttributeById(id: number): Observable<void> {
+      const headers = this.createAuthorizationHeader();
+      const url = `${this.apiOrgAttributeDetails}Delete/${id}`;
+      return this.http.delete<void>(url, { headers }).pipe(
+        catchError(this.handleError)
+      );
+    }
+
   // Get Org Data by Code (GET with Token)
   getOrgDataByCode(code: number): Observable<ISalaryData> {
     const headers = this.createAuthorizationHeader();
@@ -111,10 +159,10 @@ export class OrgserviceService {
     );
   }
 
-  // Fetch OrgValue options
-  getOrgValues(): Observable<OrgValue[]> {
+  // Fetch OrgDetail options
+  getOrgValues(): Observable<OrgDetail[]> {
     const headers = this.createAuthorizationHeader();
-    return this.http.get<OrgValue[]>(`${this.apiOrgAttributeDetails}GetAllRecord`, { headers }).pipe(
+    return this.http.get<OrgDetail[]>(`${this.apiOrgAttributeDetails}GetAllRecord`, { headers }).pipe(
       catchError(this.handleError)
     );
   }
@@ -127,18 +175,18 @@ export class OrgserviceService {
     );
   }
 
-  getOrgValueById(id: number): Observable<OrgValue> {
+  getOrgValueById(id: number): Observable<OrgDetail> {
     const headers = this.createAuthorizationHeader();
     const url = `${this.apiOrgAttributeDetails}GetById/${id}`;
-    return this.http.get<OrgValue>(url, { headers }).pipe(
+    return this.http.get<OrgDetail>(url, { headers }).pipe(
       catchError(this.handleError)
     );
   }
 
-  getOrgValueHeadById(id: number): Observable<OrgValue[]> {
+  getOrgValueHeadById(id: number): Observable<OrgDetail[]> {
     const headers = this.createAuthorizationHeader();
     const url = `${this.apiOrgAttributeDetails}GetHeadById/${id}`;
-    return this.http.get<OrgValue[]>(url, { headers }).pipe(
+    return this.http.get<OrgDetail[]>(url, { headers }).pipe(
       catchError(this.handleError)
     );
   }

@@ -1,0 +1,88 @@
+<div class="app" id="app">
+    <article class="content dashboard-page">
+        <div class="title-block">
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Org Attribute</h5>
+        </div>
+        <form [formGroup]="orgDetailForm" (ngSubmit)="onSubmit()">
+            <section class="section">
+                <div class="col-md-12">
+                    <div class="card card-block ">
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Code</label>
+                                <input formControlName="cd" type="text" class="form-control" [readOnly]="!isAdd"
+                                    placeholder="Enter Code">
+                                <div *ngIf="orgDetailForm.get('cd')?.errors?.['maxlength']">
+                                    <small class="text-danger">Code cannot exceed 30 characters.</small>
+                                </div>
+                                <div *ngIf="orgDetailForm.get('cd')?.errors?.['pattern']">
+                                    <small class="text-danger">Code must be Alpha & numeric only.</small>
+                                </div>
+                                <div *ngIf="submitted && orgDetailForm.get('cd')?.errors?.['required']">
+                                    <small class="text-danger">Code is required.</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="control-label">Description</label>
+                                <input formControlName="ds" type="text" class="form-control"
+                                    placeholder="Enter description">
+                                <div *ngIf="orgDetailForm.get('ds')?.errors?.['maxlength']">
+                                    <small class="text-danger">Description cannot exceed 100 characters.</small>
+                                </div>
+                                <div *ngIf="submitted && orgDetailForm.get('ds')?.errors?.['required']">
+                                    <small class="text-danger">Description is required.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Status</label>
+                                <select formControlName="st" class="form-control">
+                                    <option value="A">Active</option>
+                                    <option value="I">Inactive</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="row form-group">
+                            <div class="col-6">
+                                <label class="control-label">Status</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="status-toggle" class="toggle-input" [checked]="isActive"
+                                        (change)="onToggleChange()" />
+                                    <label for="status-toggle" class="toggle-label">
+                                        <span class="toggle-text left-text">On</span>
+                                        <span class="toggle-text right-text">Off</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="control-label">Org Header Name</label>
+                                <div class="input-group">
+                                    <!-- <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code"> -->
+                                    <input class="form-control"
+                                        [value]="getOrgHeaderDs(orgDetailForm.get('oId')?.value)"
+                                        placeholder="Org Header"
+                                        [ngClass]="{'invalid-box': this.orgDetailForm.get('oId')?.value==null && submitted}"
+                                        readonly>
+                                    <button type="button" (click)="openOrgHeaderModal()"><i class="fa fa-plus-square-o"
+                                            style="font-size:28px;color:#85CE36"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-8">
+                        <button type="submit" style="margin-right: 5px;" class="btn btn-primary btn-lg"
+                            id="btn_submit">Save</button>
+                        <button type="button" class="btn btn-primary btn-lg"
+                            (click)="router.navigate(['/org-attributes-details'])">Cancel</button>
+                    </div>
+                </div>
+            </section>
+
+
+        </form>
+    </article>
+</div>
