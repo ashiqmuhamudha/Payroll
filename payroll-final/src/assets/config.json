@@ -4,6 +4,7 @@
     "apiOrgAttributeDetails" : "http://210.18.187.237:1234/ORG_ATTRIBUTES_DETAILS/api/v1/ORG_ATTRIBUTES_DETAILS/",
     "apiOrgAttributeHeader" : "http://210.18.187.237:1234/ORG_ATTRIBUTES_HEADERS/api/v1/ORG_ATTRIBUTES_HEADERS/",
     "apiWagePeriod": "http://210.18.187.237:1234/Wage_Period/api/v1/WAGE_PERIOD/",
+    "apiBaseComponent" : "http://210.18.187.237:1234/Base_component/api/v1/BASE_COMPONENT/",
     "sCompanyCode": "cli",
     "sUserName": "12345",
     "sPassword": "12345"

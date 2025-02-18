@@ -9,7 +9,8 @@ import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { AuthGuard } from './guard/auth.guard';
 import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.component';
 import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
-
+import { BaselistComponent } from './base-component/baselist/baselist.component';
+import { BaseformComponent } from './base-component/baseform/baseform.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,9 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'baselist', component: BaselistComponent },
+      { path: 'baselist/create', component: BaseformComponent },
+      { path: 'baselist/edit/:id', component: BaseformComponent },
       { path: 'org-attributes-details/create', component: OrgattdetailComponent },
       { path: 'org-attributes-details', component: OrgattdetaillistComponent },
       { path: 'org-attributes-details/edit/:id', component: OrgattdetailComponent },
