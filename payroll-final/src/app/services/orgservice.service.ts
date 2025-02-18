@@ -124,6 +124,7 @@ export class OrgserviceService {
       catchError(this.handleError)
     );
   }
+  
 
   // Add a new salary group (POST with Token)
   addOrgData(orgData: ISalaryData): Observable<ISalaryData> {
@@ -158,6 +159,20 @@ export class OrgserviceService {
       catchError(this.handleError)
     );
   }
+
+  getSalaryGroup(): Observable<ISalaryData[]> {
+    const headers = this.createAuthorizationHeader();
+    return this.http.get<ISalaryData[]>(`${this.apiSalaryGroup}GetAllRecord`, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  //getSalaryGroupByDes(description : string): Observable<ISalaryData> {
+    //const headers = this.createAuthorizationHeader();
+    //return this.http.get<ISalaryData>(`${this.apiSalaryGroup}GetById/${description}`, { headers }).pipe(
+      //catchError(this.handleError)
+    //);
+  //}
 
   // Fetch OrgDetail options
   getOrgValues(): Observable<OrgDetail[]> {

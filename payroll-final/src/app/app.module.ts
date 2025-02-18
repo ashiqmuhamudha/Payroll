@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.component';
 import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
+import { BaselistComponent } from './base-component/baselist/baselist.component';
+import { BaseformComponent } from './base-component/baseform/baseform.component';
 
 
 
@@ -39,7 +41,9 @@ export function initializeApp(configService: ConfigService) {
     LoginComponent,
     MainlayoutComponent,
     OrgattdetailComponent,
-    OrgattdetaillistComponent,    
+    OrgattdetaillistComponent,
+    BaselistComponent,
+    BaseformComponent,    
   ],
   imports: [
     BrowserModule,

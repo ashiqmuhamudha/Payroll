@@ -53,6 +53,10 @@ export class ConfigService {
     return this.config ? this.config.apiWagePeriod : '';
   }
 
+  get apiBaseComponent(): string {
+    return this.config ? this.config.apiBaseComponent : '';
+  }
+
   setConfig(config: any): void {
     this.config = config;
   }

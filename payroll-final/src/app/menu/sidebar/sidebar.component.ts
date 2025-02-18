@@ -18,11 +18,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     { "id": 5, "na": "Org Attributes Headers", "st": "A", "mm": 1, "sm": 1, "so": 1 },
     { "id": 6, "na": "Org Attributes Details", "st": "A", "mm": 1, "sm": 2, "so": 2 },
     { "id": 7, "na": "Salary Group", "st": "A", "mm": 1, "sm": 3, "so": 3 },
-    { "id": 8, "na": "Leave Group", "st": "A", "mm": 1, "sm": 4, "so": 4 },
-    { "id": 9, "na": "Wage Period", "st": "A", "mm": 1, "sm": 5, "so": 5 },
-    { "id": 10, "na": "MAIN 2 SCREEN 1", "st": "A", "mm": 2, "sm": 1, "so": 1 },
-    { "id": 11, "na": "MAIN 3 SCREEN 12", "st": "A", "mm": 3, "sm": 1, "so": 1 },
-    { "id": 12, "na": "MAIN 4 SCREEN 1", "st": "A", "mm": 4, "sm": 1, "so": 1 }
+    { "id": 8, "na": "Baselist", "st": "A", "mm": 1, "sm": 4, "so": 4 },
+    { "id": 9, "na": "Leave Group", "st": "A", "mm": 1, "sm": 5, "so": 5 },
+    { "id": 10, "na": "Wage Period", "st": "A", "mm": 1, "sm": 6, "so": 6 },
+    { "id": 11, "na": "MAIN 2 SCREEN 1", "st": "A", "mm": 2, "sm": 1, "so": 1 },
+    { "id": 12, "na": "MAIN 3 SCREEN 12", "st": "A", "mm": 3, "sm": 1, "so": 1 },
+    { "id": 13, "na": "MAIN 4 SCREEN 1", "st": "A", "mm": 4, "sm": 1, "so": 1 }
   ];
 
   menus: Menu[] = [];
