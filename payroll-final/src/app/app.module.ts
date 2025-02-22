@@ -22,6 +22,10 @@ import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.compo
 import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
 import { BaselistComponent } from './base-component/baselist/baselist.component';
 import { BaseformComponent } from './base-component/baseform/baseform.component';
+import { AddpaysalarylistComponent } from './add-pay/addpaysalarylist/addpaysalarylist.component';
+import { AddpaysalaryformComponent } from './add-pay/addpaysalaryform/addpaysalaryform.component';
+import { TaxinfolistComponent } from './tax-info/taxinfolist/taxinfolist.component';
+import { TaxinfoformComponent } from './tax-info/taxinfoform/taxinfoform.component';
 
 
 
@@ -43,7 +47,11 @@ export function initializeApp(configService: ConfigService) {
     OrgattdetailComponent,
     OrgattdetaillistComponent,
     BaselistComponent,
-    BaseformComponent,    
+    BaseformComponent,
+    AddpaysalarylistComponent,
+    AddpaysalaryformComponent,
+    TaxinfolistComponent,
+    TaxinfoformComponent,    
   ],
   imports: [
     BrowserModule,

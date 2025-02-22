@@ -1,0 +1,84 @@
+<div class="app" id="app">
+    <article class="content dashboard-page">
+        <div class="title-block">
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Tax Information Details</h5>
+        </div>
+        <form [formGroup]="taxform" (ngSubmit)="onSubmit()" >
+            <section class="section">
+                <div class="col-md-12">
+                    <div class="row form-group">
+                        <div class="form-group col-6">
+                                <label class="control-label">Code</label>
+                                <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
+                                <div *ngIf="taxform.get('cd')?.errors?.['maxlength']">
+                                   <small class="text-danger">Code cannot exceed 50 characters.</small>
+                                </div>
+                                <div *ngIf="taxform.get('cd')?.errors?.['pattern']">
+                                    <small class="text-danger">Code must be Alpha & numeric only.
+                                        </small>
+                                </div>
+                                <div *ngIf="submitted && taxform.get('cd')?.errors?.['required']">
+                                    <small class="text-danger">Code is required.</small>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="control-label">Description</label>
+                                <input formControlName="ds" type="text" class="form-control"
+                                    placeholder="Enter Description">
+                               <div *ngIf="taxform.get('ds')?.errors?.['maxlength']">
+                                   <small class="text-danger">Description cannot exceed 100 characters.</small>
+                                </div>
+                                <div *ngIf="submitted && taxform.get('ds')?.errors?.['required']">
+                                    <small class="text-danger">Description is required.</small>
+                                </div>
+                            </div>
+                        </div>       
+                            <div class="row form-group">
+                                <div class="form-group col-6">
+                                    <label class="control-label">Tax Group Name</label>
+                                        <div class="input-group">                                                            
+                                            <input class="form-control"  
+                                            [value]="getTaxform(taxform.get('tGn')?.value)"
+                                            placeholder="Select Tax Group Name" formControlName="tGn" type="text"
+                                            [ngClass]="{'invalid-box': this.taxform.get('tGn')?.value==0 && submitted}"
+                                            readonly>
+                                            <button type="button"  (click)="opentaxformModal()" ><i class="fa fa-plus-square-o"
+                                            style="font-size:28px;color:#85CE36"></i></button>
+                                        </div>
+                                </div>                                                                             
+                                <div class=" form-group col-6">
+                                    <label class="control-label" for="sIc" formControlName="sIc">Show in Compotation</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="status-toggle-1" class="toggle-input" [checked]="isShowActive"
+                                            (change)="onShow()"/>
+                                            <label for="status-toggle-1" class="toggle-label">
+                                                <span class="toggle-text left-text">On</span>
+                                                <span class="toggle-text right-text">Off</span>
+                                            </label>
+                                
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                                                                                
+                                <div class="form-group col-6">
+                                    <label for="dO">Display Order</label>
+                                    <input type="number" id="dO" formControlName="dO" class="form-control" min="0" max="4" placeholder="Select Display Orders"/>
+                                        <div *ngIf="taxform.get('dO')?.invalid">
+                                            <small class="text-danger">Display Order allows only Numeric Decimal Number.</small> 
+                                        </div>
+                                </div> 
+                            </div>                                                                                                                                                                                                                                     
+                            <div class="col-sm-20">
+                                    <button type="submit" style="margin-right: 5px;" class="btn btn-primary btn-lg"
+                                         id="btn_submit">Save</button>
+                                    <button type="button" class="btn btn-primary btn-lg"
+                                        (click)="router.navigate(['/tax-information-list'])">Cancel</button>
+                            </div>
+                                            
+                                                                                                                                                                                                                                      
+                </div>
+            </section>
+        </form>
+    </article>
+</div>

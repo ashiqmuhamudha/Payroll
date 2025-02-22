@@ -57,6 +57,18 @@ export class ConfigService {
     return this.config ? this.config.apiBaseComponent : '';
   }
 
+  get apiadditionalpaysalarycomponent(): string {
+    return this.config ? this.config.apiadditionalpaysalarycomponent : '';
+  }
+
+  get apiTaxInfo(): string {
+    return this.config ? this.config.apiTaxInfo : '';
+  }
+
+  get apiTaxData(): string {
+    return this.config ? this.config.apiTaxData : '';
+  }
+
   setConfig(config: any): void {
     this.config = config;
   }
