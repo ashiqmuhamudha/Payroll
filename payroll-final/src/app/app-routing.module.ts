@@ -11,6 +11,10 @@ import { OrgattdetailComponent } from './payroll/orgattdetail/orgattdetail.compo
 import { OrgattdetaillistComponent } from './payroll/orgattdetaillist/orgattdetaillist.component';
 import { BaselistComponent } from './base-component/baselist/baselist.component';
 import { BaseformComponent } from './base-component/baseform/baseform.component';
+import { AddpaysalarylistComponent } from './add-pay/addpaysalarylist/addpaysalarylist.component';
+import { AddpaysalaryformComponent } from './add-pay/addpaysalaryform/addpaysalaryform.component';
+import { TaxinfolistComponent } from './tax-info/taxinfolist/taxinfolist.component';
+import { TaxinfoformComponent } from './tax-info/taxinfoform/taxinfoform.component';
 
 const routes: Routes = [
 
@@ -20,6 +24,13 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'tax-information-list', component: TaxinfolistComponent },
+      { path: 'tax-information-form', component: TaxinfoformComponent },
+      { path: 'tax-information-list/create', component: TaxinfoformComponent },
+      { path: 'tax-information-list/edit/:id', component: TaxinfoformComponent },
+      { path: 'additional-pay-salary-list', component: AddpaysalarylistComponent },
+      { path: 'additional-pay-salary-list/create', component: AddpaysalaryformComponent },
+      { path: 'additional-pay-salary-list/edit/:id', component: AddpaysalaryformComponent },
       { path: 'baselist', component: BaselistComponent },
       { path: 'baselist/create', component: BaseformComponent },
       { path: 'baselist/edit/:id', component: BaseformComponent },

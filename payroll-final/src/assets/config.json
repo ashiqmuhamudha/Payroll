@@ -5,6 +5,9 @@
     "apiOrgAttributeHeader" : "http://210.18.187.237:1234/ORG_ATTRIBUTES_HEADERS/api/v1/ORG_ATTRIBUTES_HEADERS/",
     "apiWagePeriod": "http://210.18.187.237:1234/Wage_Period/api/v1/WAGE_PERIOD/",
     "apiBaseComponent" : "http://210.18.187.237:1234/Base_component/api/v1/BASE_COMPONENT/",
+    "apiadditionalpaysalarycomponent" : "http://210.18.187.237:1234/ADDITIONAL_PAY_SALARY/api/v1/ADDITIONAL_PAY_SALARY/",
+    "apiTaxData" : "http://210.18.187.237:1234/connectAPI/v1/Login/GetAPIData?SearchValue=Taxgroupname",
+    "apiTaxInfo" : "http://210.18.187.237:1234/TAX_INFORMATION/api/v1/TAX_INFORMATION/",
     "sCompanyCode": "cli",
     "sUserName": "12345",
     "sPassword": "12345"
