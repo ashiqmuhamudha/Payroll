@@ -76,7 +76,6 @@ export class taxgroupserviceService {
     );
   }
 
-
   //getOrgDetails(
     //pageNumber: number,
     //pageSize: number,
@@ -166,12 +165,12 @@ export class taxgroupserviceService {
       }
 
   // Get Org Headers
-  //getTaxData(): Observable<ITaxinfoData[]> {
-    //const headers = this.createAuthorizationHeader();
-    //return this.http.get<ITaxinfoData[]>(`${this.apiTaxInfo}GetAllRecord`, { headers }).pipe(
-      //catchError(this.handleError)
-    //);
-  //}
+  getTaxData(): Observable<ITaxinfoData[]> {
+    const headers = this.createAuthorizationHeader();
+    return this.http.get<ITaxinfoData[]>(`${this.apiTaxInfo}GetAllRecord`, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   getApiData(): Observable<ITaxData[]> {
     const headers = this.createAuthorizationHeader();

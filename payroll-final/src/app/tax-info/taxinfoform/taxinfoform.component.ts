@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ITaxinfoData, } from '../../models/taxinfomodel';
-import { ITaxData } from '../../models/taxmodel';
+import { ITaxData, } from '../../models/taxmodel';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionModalComponent } from 'src/app/selection-modal/selection-modal.component';
@@ -35,7 +35,7 @@ export class TaxinfoformComponent {
           {
             id: [0],
             tGn: [''],
-            cd: ['', [Validators.required, Validators.maxLength(50), Validators.pattern('^[A-Z_]+$')]],
+            cd: ['', [Validators.required, Validators.maxLength(30), Validators.pattern('^[A-Z_]+$')]],
             ds: ['', [Validators.required, Validators.maxLength(100)]],
             sIc: [''],
             dO: ['' , [Validators.required, Validators.maxLength(4), Validators.pattern('/^-?\d*\.?\d+$/')]],
@@ -113,13 +113,13 @@ export class TaxinfoformComponent {
       if (taxData.id) {
           this.taxService.updateTaxInfoData(taxData).subscribe({
           next: () => this.router.navigate(['/tax-information-list']),
-          error: (err: any) => console.error('Error updating Taxform:', err)
+          error: (err: any) => console.error('Error updating baseform:', err)
         });
       }
         else {
         this.taxService.createTaxInfoData(taxData).subscribe({
           next: () => this.router.navigate(['/tax-information-list']),
-          error: (err: any) => console.error('Error creating Taxform:', err)
+          error: (err: any) => console.error('Error creating baseform:', err)
         });
       }
     }

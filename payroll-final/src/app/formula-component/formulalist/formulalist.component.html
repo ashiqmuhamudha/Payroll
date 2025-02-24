@@ -17,8 +17,8 @@
                                 <select name="dd_filter" onchange="javascript:testfunction()" id="dd_filter"
                                 [(ngModel)]="filterStatus" (change)="applyFilter()"
                                     class="dynamicdropdownposition form-control margin-right-10">
-                                    <option selected="selected" value="Y">Active</option>
-                                    <option value="N">Inactive</option>
+                                    <option selected="selected" value="A">Active</option>
+                                    <option value="I">Inactive</option>
                                 </select>
                             </span>
                     </div>
@@ -73,12 +73,12 @@
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Description: activate to sort column descending"
-                                                    style="width: 96px;">Tax Group Name</th>   
+                                                    style="width: 96px;">Salary Group Name</th>   
                                                 <th scope="col" class="sorting_asc" tabindex="0"
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Description: activate to sort column descending"
-                                                    style="width: 96px;">Show in compotation</th>
+                                                    style="width: 96px;">Type</th>
                                                 <th scope="col" class="sorting" tabindex="0"
                                                     aria-controls="GV_ManageList" rowspan="1" colspan="1"
                                                     aria-label="Action: activate to sort column ascending"
@@ -87,25 +87,25 @@
                                         </thead>
                                         <tbody>
                                             <ng-container
-                                                *ngFor="let taxData of filteredtaxList ">
+                                                *ngFor="let forData of filteredForList ">
                                                 <tr role="row" class="odd">
-                                                    <td>{{taxData.tGn}}</td>
-                                                    <td>{{taxData.cd}}</td>
-                                                    <td>{{taxData.ds}}</td>
-                                                    <td>{{taxData.sIc}}</td>
+                                                    <td>{{forData.cd}}</td>
+                                                    <td>{{forData.ds}}</td>
+                                                    <td>{{forData.sid}}</td>
+                                                    <td>{{forData.ty}}</td>
                                                     <td style="width:20px;">
                                                         <div class="item-actions-block">
                     
                                                             <a id="FileDownload" class="btn btn-info white-color"
                                                                 style="margin-right: 10px;"
-                                                                [routerLink]="['/tax-information-list/edit',taxData.id]">
+                                                                [routerLink]="['/formulalist/edit',forData.id]">
                                                                 <i class="fa fa-pencil"></i>
                                                             </a>
                     
                                                             <button id="FileDelete"
                                                                 class="btn btn-info white-color remove" href="#"
                                                                 data-toggle="modal" data-target="#confirm-modal"
-                                                                (click)="deleteTaxlist(taxData.id)">
+                                                                (click)="deleteForGroup(forData.id)">
                                                                 <i class="fa fa-trash-o "></i>
                                                             </button>
                     

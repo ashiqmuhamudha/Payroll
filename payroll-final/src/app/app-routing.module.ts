@@ -15,6 +15,8 @@ import { AddpaysalarylistComponent } from './add-pay/addpaysalarylist/addpaysala
 import { AddpaysalaryformComponent } from './add-pay/addpaysalaryform/addpaysalaryform.component';
 import { TaxinfolistComponent } from './tax-info/taxinfolist/taxinfolist.component';
 import { TaxinfoformComponent } from './tax-info/taxinfoform/taxinfoform.component';
+import { FormulalistComponent } from './formula-component/formulalist/formulalist.component';
+import { FormulaformComponent } from './formula-component/formulaform/formulaform.component';
 
 const routes: Routes = [
 
@@ -24,6 +26,9 @@ const routes: Routes = [
     component: MainlayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'formulalist', component: FormulalistComponent },
+      { path: 'formulalist/create', component: FormulaformComponent },
+      { path: 'formulalist/edit/:id', component: FormulaformComponent },
       { path: 'tax-information-list', component: TaxinfolistComponent },
       { path: 'tax-information-form', component: TaxinfoformComponent },
       { path: 'tax-information-list/create', component: TaxinfoformComponent },

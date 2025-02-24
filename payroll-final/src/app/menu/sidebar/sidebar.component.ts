@@ -21,11 +21,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     { "id": 8, "na": "Baselist", "st": "A", "mm": 1, "sm": 4, "so": 4 },
     { "id": 9, "na": "Additional Pay Salary list", "st": "A", "mm": 1, "sm": 5, "so": 5 },
     { "id": 10, "na": "Tax information list", "st": "A", "mm": 1, "sm": 6, "so": 6 },
-    { "id": 11, "na": "Leave Group", "st": "A", "mm": 1, "sm": 7, "so": 7 },
-    { "id": 12, "na": "Wage Period", "st": "A", "mm": 1, "sm": 8, "so": 8 },
-    { "id": 13, "na": "MAIN 2 SCREEN 1", "st": "A", "mm": 2, "sm": 1, "so": 1 },
-    { "id": 14, "na": "MAIN 3 SCREEN 12", "st": "A", "mm": 3, "sm": 1, "so": 1 },
-    { "id": 15, "na": "MAIN 4 SCREEN 1", "st": "A", "mm": 4, "sm": 1, "so": 1 }
+    { "id": 11, "na": "Formulalist", "st": "A", "mm": 1, "sm": 7, "so": 7 },
+    { "id": 12, "na": "Leave Group", "st": "A", "mm": 1, "sm": 8, "so": 8 },
+    { "id": 13, "na": "Wage Period", "st": "A", "mm": 1, "sm": 9, "so": 9 },
+    { "id": 14, "na": "MAIN 2 SCREEN 1", "st": "A", "mm": 2, "sm": 1, "so": 1 },
+    { "id": 15, "na": "MAIN 3 SCREEN 12", "st": "A", "mm": 3, "sm": 1, "so": 1 },
+    { "id": 16, "na": "MAIN 4 SCREEN 1", "st": "A", "mm": 4, "sm": 1, "so": 1 }
   ];
 
   menus: Menu[] = [];

@@ -11,7 +11,7 @@
                                 <label class="control-label">Code</label>
                                 <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
                                 <div *ngIf="taxform.get('cd')?.errors?.['maxlength']">
-                                   <small class="text-danger">Code cannot exceed 50 characters.</small>
+                                   <small class="text-danger">Code cannot exceed 30 characters.</small>
                                 </div>
                                 <div *ngIf="taxform.get('cd')?.errors?.['pattern']">
                                     <small class="text-danger">Code must be Alpha & numeric only.
