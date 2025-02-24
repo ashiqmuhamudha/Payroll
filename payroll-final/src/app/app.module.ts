@@ -26,6 +26,8 @@ import { AddpaysalarylistComponent } from './add-pay/addpaysalarylist/addpaysala
 import { AddpaysalaryformComponent } from './add-pay/addpaysalaryform/addpaysalaryform.component';
 import { TaxinfolistComponent } from './tax-info/taxinfolist/taxinfolist.component';
 import { TaxinfoformComponent } from './tax-info/taxinfoform/taxinfoform.component';
+import { FormulalistComponent } from './formula-component/formulalist/formulalist.component';
+import { FormulaformComponent } from './formula-component/formulaform/formulaform.component';
 
 
 
@@ -51,7 +53,9 @@ export function initializeApp(configService: ConfigService) {
     AddpaysalarylistComponent,
     AddpaysalaryformComponent,
     TaxinfolistComponent,
-    TaxinfoformComponent,    
+    TaxinfoformComponent,
+    FormulalistComponent,
+    FormulaformComponent,    
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,179 @@
+<div class="app" id="app">
+    <article class="content dashboard-page">
+        <div class="title-block">
+            <h5 class="">{{isAdd? 'Add' : 'Edit'}} Formulalist Details</h5>
+        </div>
+        <form [formGroup]="formulaform" (ngSubmit)="onSubmit()" >
+            <section class="section">
+                <div class="col-md-12">
+                    <div class="row form-group">
+                        <div class="form-group col-6">
+                                <label class="control-label">Code</label>
+                                <input formControlName="cd" type="text" class="form-control" placeholder="Enter Code">
+                                <div *ngIf="formulaform.get('cd')?.errors?.['maxlength']">
+                                   <small class="text-danger">Code cannot exceed 30 characters.</small>
+                                </div>
+                                <div *ngIf="formulaform.get('cd')?.errors?.['pattern']">
+                                    <small class="text-danger">Code must be Alpha & numeric only.
+                                        </small>
+                                </div>
+                                <div *ngIf="submitted && formulaform.get('cd')?.errors?.['required']">
+                                    <small class="text-danger">Code is required.</small>
+                                </div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label class="control-label">Description</label>
+                                <input formControlName="ds" type="text" class="form-control"
+                                    placeholder="Enter Description">
+                               <div *ngIf="formulaform.get('ds')?.errors?.['maxlength']">
+                                   <small class="text-danger">Description cannot exceed 100 characters.</small>
+                                </div>
+                                <div *ngIf="submitted && formulaform.get('ds')?.errors?.['required']">
+                                    <small class="text-danger">Description is required.</small>
+                                </div>
+                            </div>
+                        </div>       
+                            <div class="row form-group">
+                                <div class="form-group col-6">
+                                    <label class="control-label">Salary Group Name</label>
+                                        <div class="input-group">                                                            
+                                            <input class="form-control"  
+                                            [value]="getFormulaform(formulaform.get('sid')?.value)"
+                                            placeholder="Select Salary Group Name" formControlName="sid" type="text"
+                                            [ngClass]="{'invalid-box': this.formulaform.get('sid')?.value==0 && submitted}"
+                                            readonly>
+                                            <button type="button"  (click)="openFormulaformModal()" ><i class="fa fa-plus-square-o"
+                                            style="font-size:28px;color:#85CE36"></i></button>
+                                        </div>
+                                </div>                                                                             
+                                <div class="form-group col-6" >
+                                    <label for="ty">Type</label>
+                                        <select id="ty" class="form-control" formControlName="ty" >
+                                            <option value="E">Earnings</option>
+                                            <option value="D">Deductions</option>
+                                            <option value="o">others</option>
+                                   
+                                        </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class=" form-group col-6">
+                                    <label class="control-label" for="pr" formControlName="pr">Prorate</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="status-toggle-1" class="toggle-input" [checked]="isProrateActive"
+                                            (change)="onProrate()"/>
+                                            <label for="status-toggle-1" class="toggle-label">
+                                                <span class="toggle-text left-text">On</span>
+                                                <span class="toggle-text right-text">Off</span>
+                                            </label>
+                                
+                                        </div>
+                                </div>                                                                
+                                <div class=" form-group col-6">
+                                    <label class="control-label"for="ar" formControlName="ar">Arrear</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="status-toggle-2" class="toggle-input" [checked]="isArrearActive"
+                                             (change)="onArrear()"/>
+                                            <label for="status-toggle-2" class="toggle-label">
+                                                <span class="toggle-text left-text">On</span>
+                                                <span class="toggle-text right-text">Off</span>
+                                            </label>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">                               
+                                    <div class="form-group col-6">
+                                        <label class="control-label"for="pp" formControlName="pp">Payslip</label>
+                                        <div class="toggle-switch">
+                                           <input type="checkbox" id="status-toggle-3" class="toggle-input" [checked]="isPayslipActive"
+                                           (change)="onPayslip()"/>
+                                            <label for="status-toggle-3" class="toggle-label">
+                                                <span class="toggle-text left-text">On</span>
+                                                <span class="toggle-text right-text">Off</span>
+                                            </label>
+                                        </div>
+                                    </div>                                  
+                                    <div class="form-group col-6">
+                                        <label class="control-label"for="ont" formControlName="ont">One Time tax</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="status-toggle-4" class="toggle-input" [checked]="isTimetaxActive"
+                                            (change)="onTimetax()"/>
+                                            <label for="status-toggle-4" class="toggle-label">
+                                                <span class="toggle-text left-text">On</span>
+                                                <span class="toggle-text right-text">Off</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            <div class="row form-group">
+                                <div class="form-group col-6">
+                                    <label for="ppo">Payslip Order</label>
+                                    <input type="number" id="pPO" formControlName="ppo" class="form-control" min="0" max="99" placeholder="Select Payslip Orders"/>
+                                        <div *ngIf="formulaform.get('ppo')?.invalid">
+                                            <small class="text-danger">Payslip Order must be between 1 and 99.</small> 
+                                        </div>
+                                </div>                            
+                                <div class="form-group col-6">
+                                    <label for="fe">For Employee</label>
+                                    <select id="fe" class="form-control" formControlName="fe">
+                                            <option value="A">Active</option>
+                                            <option value="I">In-Active</option>
+                                            <option value="B">Both</option>
+                                   
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="form-group col-6">
+                                    <label class="control-label">Tax Component</label>
+                                    <input formControlName="tc" type="text" class="form-control" placeholder="Enter Tax Component ">
+                                    <!--<div *ngIf="formulaform.get('tc')?.errors?.['maxlength']">
+                                        <small class="text-danger">Tax component cannot exceed 10 characters.</small>
+                                    </div>
+                                    <div *ngIf="formulaform.get('tc')?.errors?.['pattern']">
+                                        <small class="text-danger">Tax component must be uppercase and can include underscores
+                                        only.</small>
+                                    </div>
+                                    <div *ngIf="submitted && formulaform.get('tc')?.errors?.['required']">
+                                        <small class="text-danger">Tax component is required.</small>
+                                    </div>-->
+                                </div>                       
+                                <div class="form-group col-6">
+                                    <label for="tcc">Tax calculation</label>
+                                    <select id="tcc" class="form-control" formControlName="tcc">
+                                        <option value="C">Current</option>
+                                        <option value="Y">YTD</option>
+                                        <option value="P">Projection</option>                                   
+                                    </select>
+                                </div>
+                            </div> 
+                            <div class="row form-group">
+                                <div class="form-group col-6">
+                                    <label class="control-label">Formula</label>
+                                    <input formControlName="fr" type="text" class="form-control" placeholder="Enter Formula Text ">
+                                    <!--<div *ngIf="formulaform.get('fr')?.errors?.['maxlength']">
+                                        <small class="text-danger">Formula Text cannot exceed 10 characters.</small>
+                                    </div>
+                                    <div *ngIf="formulaform.get('fr')?.errors?.['pattern']">
+                                        <small class="text-danger">Formula Text must be uppercase and can include underscores
+                                        only.</small>
+                                    </div>
+                                    <div *ngIf="submitted && formulaform.get('fr')?.errors?.['required']">
+                                        <small class="text-danger">Formula Text is required.</small>
+                                    </div>-->
+                                </div> 
+                            </div>                                                                                                                                                                                                                                             
+                            <div class="col-sm-20">
+                                    <button type="submit" style="margin-right: 5px;" class="btn btn-primary btn-lg"
+                                         id="btn_submit">Save</button>
+                                    <button type="button" class="btn btn-primary btn-lg"
+                                        (click)="router.navigate(['/formulalist'])">Cancel</button>
+                            </div>
+                                            
+                                                                                                                                                                                                                                      
+                </div>
+            </section>
+        </form>
+    </article>
+</div>
