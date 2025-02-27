@@ -9,9 +9,6 @@
     "apiTaxData" : "http://210.18.187.237:1234/connectAPI/v1/Login/GetAPIData?SearchValue=Taxgroupname",
     "apiTaxInfo" : "http://210.18.187.237:1234/TAX_INFORMATION/api/v1/TAX_INFORMATION/",
     "apiformulacomponent" : "http://210.18.187.237:1234/FORMULA_SALARY_BUILDER/api/v1/FORMULA_SALARY_BUILDER/",
-    "sCompanyCode": "cli",
-    "sUserName": "12345",
-    "sPassword": "12345"
-
-  }
+    "sCompanyCode": "cli"
+}
   
